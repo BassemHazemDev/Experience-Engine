@@ -35,17 +35,33 @@ if (!note) {
 const abs = (relative) => path.join(ROOT, ...relative.split("/"));
 const sha256 = (buffer) => createHash("sha256").update(buffer).digest("hex");
 const toLf = (buffer) => Buffer.from(buffer.toString("latin1").replace(/\r\n/g, "\n"), "latin1");
-const git = (args) => execFileSync("git", ["-c", "core.quotepath=off", ...args], { cwd: ROOT, encoding: "utf8" });
+const git = (args) => execFileSync("git", ["-c", "core.quotepath=off", ...args], { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
 const split = (text) => text.split("\0").filter(Boolean);
 
 const manifest = JSON.parse(readFileSync(abs(MANIFEST), "utf8"));
 const base = manifest.basedOn.gitBaseCommit;
-git(["cat-file", "-e", `${base}^{commit}`]); // throws if the base commit is not in this repository
-
-const inBase = new Set(split(git(["ls-tree", "-r", "-z", "--name-only", base])));
-const changed = [...new Set([...split(git(["diff", "--name-only", "-z", base, "--"])), ...split(git(["ls-files", "-z", "--others", "--exclude-standard"]))])]
-  .filter((file) => file !== MANIFEST)
-  .sort();
+let inBase;
+let changed;
+try {
+  git(["cat-file", "-e", `${base}^{commit}`]);
+  inBase = new Set(split(git(["ls-tree", "-r", "-z", "--name-only", base])));
+  changed = [...new Set([...split(git(["diff", "--name-only", "-z", base, "--"])), ...split(git(["ls-files", "-z", "--others", "--exclude-standard"]))])]
+    .filter((file) => file !== MANIFEST)
+    .sort();
+} catch {
+  // When the base commit is not present in this repository (e.g. shallow clone or squashed release),
+  // retain existing manifest files and incorporate any modified/untracked files from the working tree.
+  const existingFiles = manifest.changedFiles?.files ?? [];
+  const existingMap = new Map(existingFiles.map((file) => [file.path, file.change]));
+  inBase = {
+    has(file) {
+      return existingMap.get(file) === "modified";
+    },
+  };
+  changed = [...new Set([...existingFiles.map((file) => file.path), ...split(git(["ls-files", "-z", "--modified", "--others", "--exclude-standard"]))])]
+    .filter((file) => file !== MANIFEST)
+    .sort();
+}
 
 const files = changed.map((file) => {
   if (!existsSync(abs(file))) return { path: file, change: "deleted" };

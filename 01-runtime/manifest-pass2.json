@@ -2,7 +2,7 @@
   "manifest": "pass-2",
   "title": "Experience Engine Studio — Pass 2: technical hardening and showcase QA",
   "createdAt": "2026-10-07T13:32:36.856Z",
-  "updatedAt": "2026-10-07T18:56:57.510Z",
+  "updatedAt": "2026-10-07T21:17:09.314Z",
   "revisionNote": "First recorded with 30 files and committed as 2f7cb20. Updated afterwards to add the verifier script and two documentation notes that point to it. No engine, adapter, application or test file changed in this update.",
   "supersedes": null,
   "basedOn": {
@@ -250,10 +250,10 @@
       },
       {
         "path": "01-runtime/scripts/update-manifest-pass2.mjs",
-        "sha256": "8c0c7d2c29a10dc24c25dfd5dd2fee353e8ee0ae66ddd81fa91c6f5c33f9603f",
-        "sha256_lf": "8c0c7d2c29a10dc24c25dfd5dd2fee353e8ee0ae66ddd81fa91c6f5c33f9603f",
-        "bytes": 4596,
-        "bytes_lf": 4596,
+        "sha256": "5bacddecc62ad2ef44f696d5ff0226bfe1c453d111ee85d4016befac7f0b6690",
+        "sha256_lf": "5bacddecc62ad2ef44f696d5ff0226bfe1c453d111ee85d4016befac7f0b6690",
+        "bytes": 5267,
+        "bytes_lf": 5267,
         "eol": "lf",
         "change": "added"
       },
@@ -1037,10 +1037,10 @@
       },
       {
         "path": "package.json",
-        "sha256": "01e9c93fa81bc39e5c0b6b75cf739fbeb871748faa4c924dbf6c590ecb08980e",
-        "sha256_lf": "01e9c93fa81bc39e5c0b6b75cf739fbeb871748faa4c924dbf6c590ecb08980e",
-        "bytes": 1582,
-        "bytes_lf": 1582,
+        "sha256": "829d05a33e2ab42d4e0ef6c7d726cda3c8aff4351d5ecb4b949854fd21d38066",
+        "sha256_lf": "829d05a33e2ab42d4e0ef6c7d726cda3c8aff4351d5ecb4b949854fd21d38066",
+        "bytes": 1632,
+        "bytes_lf": 1632,
         "eol": "lf",
         "change": "added"
       }
@@ -1253,6 +1253,11 @@
       "at": "2026-10-07T18:56:57.510Z",
       "files": 108,
       "note": "Corrected the count of differing Phase 37 entries in RESEARCH.md."
+    },
+    {
+      "at": "2026-10-07T21:17:09.314Z",
+      "files": 108,
+      "note": "Vercel deployment fix: remove install-time prepare build and add explicit build:vercel command."
     }
   ]
 }
