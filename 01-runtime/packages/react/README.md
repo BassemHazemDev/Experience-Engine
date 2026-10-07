@@ -1,0 +1,51 @@
+# @experience-engine/react
+
+React bindings for [Experience Engine](https://github.com/BassemHazemDev/Experience-Engine): a provider and hooks built on `useSyncExternalStore`.
+
+**Experimental.** Version 0.1.0 is an early research implementation; the API may change.
+
+```bash
+npm install @experience-engine/core @experience-engine/react
+```
+
+Requires React 18 or newer.
+
+```tsx
+import { ExperienceEngine } from "@experience-engine/core";
+import { ExperienceProvider, useExperience } from "@experience-engine/react";
+
+const engine = new ExperienceEngine({ /* cultures, themes, motions, initial */ });
+await engine.init();
+
+function Page() {
+  const { experience, setCulture } = useExperience();
+  if (!experience) return null;
+  return (
+    <main dir={experience.direction} style={{ background: String(experience.tokens.surface) }}>
+      <button onClick={() => void setCulture("ar-EG").catch(() => undefined)}>العربية</button>
+    </main>
+  );
+}
+
+root.render(
+  <ExperienceProvider engine={engine}>
+    <Page />
+  </ExperienceProvider>,
+);
+```
+
+| Export | Returns |
+|---|---|
+| `ExperienceProvider` | Makes an engine available to the hooks |
+| `useExperience()` | `{ experience, setExperience, setCulture, setTheme, setMotion, preload }` |
+| `useCulture()`, `useTheme()`, `useMotion()`, `useDirection()` | One field of the committed experience |
+| `useExperienceEngine()` | The engine |
+| `createExperienceStore(engine)` | The external store behind the hooks |
+
+Components re-render when the engine commits an experience, and not for stale or failed requests. The store subscribes to the engine; there is no polling.
+
+For server rendering with Next.js, use the core in Server Components and this package on the client. See the SSR guide in the repository.
+
+## License
+
+MIT

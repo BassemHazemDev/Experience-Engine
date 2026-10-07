@@ -1,0 +1,41 @@
+EICS 2027 — PCS Submission Handoff
+
+TITLE
+Experience Engine: A Framework-Agnostic Protocol for Multi-Dimensional UI Experience Transitions
+
+TRACK
+Full Papers & Technical Notes
+
+RECOMMENDED TYPE
+Technical Note candidate
+
+AUTHORS
+[ENTER REAL AUTHOR 1]
+[ENTER REAL AUTHOR 2]
+...
+
+AFFILIATIONS
+[ENTER REAL AFFILIATION(S)]
+
+CONTACT
+[ENTER REAL CONTACT EMAIL(S)]
+
+CONFLICTS
+[ENTER PCS CONFLICTS / NON-CONFLICTS]
+
+ABSTRACT
+[Copied from manuscript; verify against PCS field before submission.]
+
+KEYWORDS
+[Copy from manuscript; verify against PCS field before submission.]
+
+REVIEW MODE
+Double-blind / anonymous manuscript
+
+UPLOAD
+PDF: upload/Experience-Engine-EICS2027-Anonymous.pdf
+SOURCE: upload/experience-engine-eics2027-source.zip
+
+IMPORTANT
+Do not add author identities, affiliations, acknowledgements, or identifying metadata to
+the anonymous PDF. Enter real identity information only in the PCS metadata fields.

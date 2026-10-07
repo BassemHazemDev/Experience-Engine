@@ -1,0 +1,12 @@
+{
+  "name": "experience-engine-next-e2e",
+  "private": true,
+  "scripts": { "build": "next build", "start": "next start", "dev": "next dev" },
+  "dependencies": {
+    "next": "16.2.0",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "@experience-engine/core": "file:../packages/core",
+    "@experience-engine/react": "file:../packages/react"
+  }
+}

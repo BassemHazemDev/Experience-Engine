@@ -1,0 +1,44 @@
+{
+  "phase": 94,
+  "title": "Personalized Dynamic per-request SSR",
+  "status": "PASS_WITH_SCOPE",
+  "route": "/personalized",
+  "requestTimeCookiePersonalization": true,
+  "sameRouteDifferentServerOutput": true,
+  "cases": [
+    {
+      "cookie": "ar-EG.luxury.smooth",
+      "statusCode": 200,
+      "id": "ar-EG::luxury::smooth",
+      "culture": "ar-EG",
+      "theme": "luxury",
+      "motion": "smooth",
+      "direction": "rtl",
+      "exactResolvedIdentity": true
+    },
+    {
+      "cookie": "en-US.light.instant",
+      "statusCode": 200,
+      "id": "en-US::light::instant",
+      "culture": "en-US",
+      "theme": "light",
+      "motion": "instant",
+      "direction": "ltr",
+      "exactResolvedIdentity": true
+    }
+  ],
+  "checkedAt": "2026-10-06T22:06:36.2821887Z",
+  "interpretation": {
+    "proven": [
+      "The same Next.js route can resolve different initial experiences from request-time cookie state.",
+      "The Experience Engine resolves the cookie-selected culture, theme, and motion on the server.",
+      "The raw HTTP responses returned status 200 and distinct resolved experience identities.",
+      "RTL/LTR direction matched the resolved culture."
+    ],
+    "scope": [
+      "Validation was executed in the local Next.js production server setup.",
+      "This does not establish behavior for every CDN/cache/deployment topology.",
+      "This does not establish universal performance superiority."
+    ]
+  }
+}

@@ -1,0 +1,193 @@
+{
+  "phase": 92,
+  "title": "Final Runtime Validation Consolidation",
+  "status": "PASS_WITH_SCOPE",
+  "react18": {
+    "status": "PASS_WITH_SCOPE",
+    "runtime": {
+      "framework": "React",
+      "version": "18.3.1",
+      "adapter": "@experience-engine/react",
+      "createRoot": true,
+      "useSyncExternalStore": true,
+      "actualReactRenders": [
+        1,
+        1,
+        1
+      ]
+    },
+    "assertions": {
+      "requestedStateMatchesFinalState": true,
+      "actualReactRerenderObserved": true
+    },
+    "environment": {
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36 Edg/154.0.0.0",
+      "viewport": "606x698",
+      "reducedMotion": false
+    },
+    "samples": [
+      {
+        "request": {
+          "culture": "ar-EG",
+          "theme": "luxury",
+          "motion": "smooth"
+        },
+        "switchLatencyMs": 23.9,
+        "resourceWaitMs": 1.1,
+        "transitionDurationMs": 18.1,
+        "commitToPaintMs": 5.2,
+        "cls": 0,
+        "longTasks": 2,
+        "droppedFrames": 0,
+        "finalExperienceId": "ar-EG::luxury::smooth",
+        "correctness": true,
+        "reactRenders": 1
+      },
+      {
+        "request": {
+          "culture": "en-US",
+          "theme": "light",
+          "motion": "instant"
+        },
+        "switchLatencyMs": 34.0,
+        "resourceWaitMs": 0.7,
+        "transitionDurationMs": 20.3,
+        "commitToPaintMs": 13.6,
+        "cls": 0,
+        "longTasks": 2,
+        "droppedFrames": 0,
+        "finalExperienceId": "en-US::light::instant",
+        "correctness": true,
+        "reactRenders": 1
+      },
+      {
+        "request": {
+          "culture": "ar-EG",
+          "theme": "luxury",
+          "motion": "smooth"
+        },
+        "switchLatencyMs": 27.4,
+        "resourceWaitMs": 0.3,
+        "transitionDurationMs": 13.5,
+        "commitToPaintMs": 13.9,
+        "cls": 0,
+        "longTasks": 2,
+        "droppedFrames": 0,
+        "finalExperienceId": "ar-EG::luxury::smooth",
+        "correctness": true,
+        "reactRenders": 1
+      }
+    ],
+    "scope": [
+      "Actual React 18 runtime and adapter path were exercised.",
+      "Correctness and actual React re-render were observed.",
+      "These three samples are not evidence of universal performance superiority.",
+      "The adapter uses a polling bridge; synchronization was explicitly handled in the E2E harness."
+    ]
+  },
+  "nextjs": {
+    "status": "PASS_WITH_SCOPE",
+    "runtime": {
+      "framework": "Next.js",
+      "version": "16.2.0",
+      "router": "App Router",
+      "reactRuntime": "19.2.0",
+      "adapter": "@experience-engine/react"
+    },
+    "build": {
+      "compiled": true,
+      "typescript": true,
+      "pageData": true,
+      "staticGeneration": true,
+      "finalization": true,
+      "route": "/",
+      "renderModeObserved": "Static / prerendered"
+    },
+    "server_http": {
+      "statusCode": 200,
+      "serverComponentMarker": true,
+      "serverCulture": "ar-EG",
+      "serverTheme": "luxury",
+      "serverMotion": "smooth",
+      "serverDirection": "rtl"
+    },
+    "client_e2e": {
+      "hydrationObserved": true,
+      "domStateCorrect": true,
+      "samples": [
+        {
+          "request": {
+            "culture": "en-US",
+            "theme": "light",
+            "motion": "instant"
+          },
+          "final": {
+            "culture": "en-US",
+            "theme": "light",
+            "motion": "instant",
+            "direction": "ltr"
+          },
+          "latencyMs": 15.8
+        },
+        {
+          "request": {
+            "culture": "ar-EG",
+            "theme": "luxury",
+            "motion": "smooth"
+          },
+          "final": {
+            "culture": "ar-EG",
+            "theme": "luxury",
+            "motion": "smooth",
+            "direction": "rtl"
+          },
+          "latencyMs": 18.6
+        },
+        {
+          "request": {
+            "culture": "en-US",
+            "theme": "light",
+            "motion": "instant"
+          },
+          "final": {
+            "culture": "en-US",
+            "theme": "light",
+            "motion": "instant",
+            "direction": "ltr"
+          },
+          "latencyMs": 13.8
+        }
+      ]
+    },
+    "scope": [
+      "Server Component output was verified in the HTTP response.",
+      "Client hydration and runtime transitions were verified in a production Next.js server.",
+      "The page was statically prerendered; dynamic per-request SSR was not separately demonstrated.",
+      "These results do not establish universal performance superiority."
+    ]
+  },
+  "gates": {
+    "core_runtime": "PASS",
+    "react_18_exact_e2e": "PASS",
+    "next_build": "PASS",
+    "next_server_rsc": "PASS",
+    "next_client_runtime": "PASS",
+    "dynamic_per_request_ssr": "PASS_WITH_SCOPE",
+    "third_party_replication": "PENDING"
+  },
+  "claim_boundary": {
+    "retained": [
+      "Experience Engine provides a reusable framework-level runtime protocol abstraction for multi-dimensional experience transitions.",
+      "The implementation can execute the protocol through the Core runtime and React adapter.",
+      "The validated React 18 path preserves requested/final experience correctness.",
+      "The validated Next.js path supports Server Component output plus hydrated client transitions within the tested setup."
+    ],
+    "not_claimed": [
+      "Universal performance superiority.",
+      "First adaptive UI system.",
+      "Unique atomicity or stale-request guarantees.",
+      "Dynamic per-request SSR across all Next.js deployment modes.",
+      "Third-party independent replication."
+    ]
+  }
+}

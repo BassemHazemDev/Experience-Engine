@@ -1,0 +1,14 @@
+{
+  "phase": 37,
+  "typecheck": "PASS",
+  "runtime_verification": {
+    "resolution_runs": 1000,
+    "concurrent_batches": 50,
+    "stale_requests": 100,
+    "failure_preservation": "PASS",
+    "snapshot_immutability": "PASS",
+    "first_class_delta": "PASS",
+    "first_class_dependency_closure": "PASS",
+    "first_class_transaction": "PASS"
+  }
+}

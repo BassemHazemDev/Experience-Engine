@@ -1,0 +1,100 @@
+{
+  "phase": 37,
+  "files": [
+    {
+      "path": "IMPLEMENTATION-NOTES.md",
+      "sha256": "efb08d42ad65008d696e16cb8b47f8b85074b3deedb979aed75c78805f884ffd",
+      "bytes": 456
+    },
+    {
+      "path": "PHASE-9-CORE-V0.1.md",
+      "sha256": "20536ef2e12449034355a052420ef1e83b0e32d9298672fd014b688399d6dcc5",
+      "bytes": 2428
+    },
+    {
+      "path": "docs/PHASE-37-FIRST-CLASS-ETP-IMPLEMENTATION.md",
+      "sha256": "05070c4ff6cb60702a0ff3cc4fd0fbf8a67023e3484eb120ddcd22ef846c7c94",
+      "bytes": 2790
+    },
+    {
+      "path": "package.json",
+      "sha256": "1b80c6f437ef53ca2a7153e5909d729939bf8dbe4f948ed2929b523585f6b618",
+      "bytes": 248
+    },
+    {
+      "path": "packages/core/package.json",
+      "sha256": "8853ffddcfe1db88e3c0dc8cedaafd406302fc2ab23da85cb58b136ee1f9d196",
+      "bytes": 152
+    },
+    {
+      "path": "packages/core/src/cache/cache.ts",
+      "sha256": "a4eb8fc018aed9e54deb9483273e08e30b894051ec909e0d62e25c95b7d31f75",
+      "bytes": 625
+    },
+    {
+      "path": "packages/core/src/components/component-resolver.ts",
+      "sha256": "e4db6825eff73de1295820a86a96eb5ca155096ccadee322c0d1659ff0f7fade",
+      "bytes": 1174
+    },
+    {
+      "path": "packages/core/src/engine.ts",
+      "sha256": "59b23f9a877fe938ad21a3a8c9275b4869f9a1f09359ded63150cc510e440afc",
+      "bytes": 4320
+    },
+    {
+      "path": "packages/core/src/errors/index.ts",
+      "sha256": "753ba48c15d39ba0c20eb3885f00d795883bc3aa81fea50db617d38e5545d0cc",
+      "bytes": 780
+    },
+    {
+      "path": "packages/core/src/index.ts",
+      "sha256": "560a18960a774dda1e545dec9e8ab9bac10d06e4f48ef603f4b25d01ea6db7be",
+      "bytes": 325
+    },
+    {
+      "path": "packages/core/src/protocol/etp.ts",
+      "sha256": "7f161dc1c6d935f3cec9ae04e7fe216aec46c8e995970112904dacc36dd76d92",
+      "bytes": 9865
+    },
+    {
+      "path": "packages/core/src/registry/registry.ts",
+      "sha256": "120f4cfbb889652c327f2d956457b08fa943783b7ce8715ab11bc1e38750be27",
+      "bytes": 554
+    },
+    {
+      "path": "packages/core/src/resolver/resolver.ts",
+      "sha256": "6ec3a43e013e9856f4487208831247cac5e1d078ce02347d415ddf3e997e4fd3",
+      "bytes": 6504
+    },
+    {
+      "path": "packages/core/src/resources/resource-manager.ts",
+      "sha256": "cc4ab52be10ddd7399e2481b265bc9b41184d1b4c59f5d17428075848a433035",
+      "bytes": 1488
+    },
+    {
+      "path": "packages/core/src/runtime/runtime.ts",
+      "sha256": "959c59aab471b41fbc5896c173e9ceb6ff99be1554100b4e00bb5056d88092fd",
+      "bytes": 4337
+    },
+    {
+      "path": "packages/core/src/types/index.ts",
+      "sha256": "47e702ab9ebc3e1b8254ceaf4ebd8024325141020ff200f769c201e6124f0d3e",
+      "bytes": 2045
+    },
+    {
+      "path": "results/verification-summary.json",
+      "sha256": "7295ec4eb4b5eb2e4541614fe328b158562a1506880256c2a1b916f06c813dfe",
+      "bytes": 349
+    },
+    {
+      "path": "tests/core-contract.test.ts",
+      "sha256": "831e14b186312938dff6b1901bb8869e69c15dc55856aef7d908806551868447",
+      "bytes": 3350
+    },
+    {
+      "path": "tsconfig.json",
+      "sha256": "4dad3370c7f288a5a6186231b93e9970f4e8286c583cb313b87e9031af49b85f",
+      "bytes": 240
+    }
+  ]
+}

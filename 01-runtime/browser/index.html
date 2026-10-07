@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Experience Engine Browser Benchmark</title>
+  <style>
+    html, body { margin: 0; min-height: 100%; font-family: system-ui, sans-serif; }
+    body { background: var(--surface, #fff); color: var(--text, #111); transition: background .25s, color .25s; }
+    [data-app] { min-height: 100vh; padding: 32px; box-sizing: border-box; }
+    [data-card] { max-width: 720px; margin: 64px auto; padding: 48px; border-radius: var(--radius, 16px); background: var(--card, #f4f4f4); }
+    .controls { display: flex; gap: 8px; flex-wrap: wrap; }
+    button { padding: 10px 14px; border-radius: 999px; border: 1px solid #bbb; background: transparent; color: inherit; cursor: pointer; }
+    [data-motion="smooth"] [data-card] { animation: card-in .25s ease; }
+    @keyframes card-in { from { opacity: .2; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <main data-app dir="ltr" data-culture="en-US" data-theme="light" data-motion="instant">
+    <section class="controls" aria-label="Experience controls">
+      <button data-culture="en-US">English</button>
+      <button data-culture="ar-EG">العربية</button>
+      <button data-theme="light">Light</button>
+      <button data-theme="luxury">Luxury</button>
+      <button data-motion="instant">Instant</button>
+      <button data-motion="smooth">Smooth</button>
+      <button data-run>Run benchmark</button>
+    </section>
+    <article data-card>
+      <h1>Experience Engine</h1>
+      <p data-copy>Measure real browser switching cost.</p>
+      <pre data-result>Ready.</pre>
+    </article>
+  </main>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

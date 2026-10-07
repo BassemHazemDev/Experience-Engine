@@ -1,0 +1,1258 @@
+{
+  "manifest": "pass-2",
+  "title": "Experience Engine Studio — Pass 2: technical hardening and showcase QA",
+  "createdAt": "2026-10-07T13:32:36.856Z",
+  "updatedAt": "2026-10-07T18:56:57.510Z",
+  "revisionNote": "First recorded with 30 files and committed as 2f7cb20. Updated afterwards to add the verifier script and two documentation notes that point to it. No engine, adapter, application or test file changed in this update.",
+  "supersedes": null,
+  "basedOn": {
+    "phase37Manifest": {
+      "path": "01-runtime/manifest.json",
+      "sha256": "5f4506b36e21b9bc812a1223ba601fbed80ae6bbe20ab2ce4393c35a8d560c05",
+      "sha256_lf": "5f4506b36e21b9bc812a1223ba601fbed80ae6bbe20ab2ce4393c35a8d560c05",
+      "note": "The Phase 37 manifest is immutable and was not modified. It remains the record of the core as evaluated at Phase 37. This file records only what Pass 2 changed on top of it."
+    },
+    "gitBaseCommit": "14586ecfd5fd534e489c1f291adf62b469d988e6",
+    "gitBranch": "main",
+    "scope": "Every file that differs from the base commit, whether committed or not, is listed. The manifest itself is excluded because a file cannot contain its own hash."
+  },
+  "verification": {
+    "script": "01-runtime/scripts/verify-manifest-pass2.mjs",
+    "command": "node 01-runtime/scripts/verify-manifest-pass2.mjs",
+    "note": "Read-only. Exits 0 only when every check passes. Use --allow-no-git for a copy without git history; the change-set check is then skipped and reported as such."
+  },
+  "hashing": {
+    "algorithm": "SHA-256",
+    "pathBase": "repository root",
+    "sha256": "Hash of the file's bytes exactly as they are on disk.",
+    "bytes": "Size on disk.",
+    "bytes_lf": "Size after converting CRLF to LF.",
+    "sha256_lf": "Hash after converting CRLF to LF. Use this when a checkout has converted line endings (the repository reports that Git will convert LF to CRLF for some of these files)."
+  },
+  "researchClaims": {
+    "changed": false,
+    "strengthened": false,
+    "statement": "Pass 2 did not add, change or strengthen any research claim. No evidence status was promoted; PASS_WITH_SCOPE entries remain PASS_WITH_SCOPE and third-party replication remains PENDING. The only wording change on the Benchmark and Evidence pages is an added caveat that the stored React 18 and Next.js samples were recorded with the earlier polling adapter and have not been re-measured.",
+    "notClaimed": [
+      "Universal performance superiority or lower latency",
+      "First adaptive, multi-dimensional, dependency-aware or transactional UI system",
+      "Unique atomicity or stale-request guarantees",
+      "SSR support across every deployment, CDN or cache topology",
+      "Third-party independent replication"
+    ]
+  },
+  "coreChange": {
+    "summary": "One additive public method, subscribe(listener), on ExperienceRuntime and ExperienceEngine. Listeners run after an experience has been committed and never for stale or failed transitions. A listener that throws cannot fail or undo the commit.",
+    "unchanged": [
+      "request normalization and resolution",
+      "typed delta computation",
+      "dependency graph, seeds and closure",
+      "resource preparation and caching",
+      "stale-request guard",
+      "transaction record",
+      "error codes"
+    ],
+    "phase37EntriesNowDiffering": [
+      "01-runtime/package.json",
+      "01-runtime/packages/core/package.json",
+      "01-runtime/packages/core/src/engine.ts",
+      "01-runtime/packages/core/src/runtime/runtime.ts"
+    ],
+    "phase37EntriesChangedByPass2": [
+      "01-runtime/packages/core/package.json",
+      "01-runtime/packages/core/src/engine.ts",
+      "01-runtime/packages/core/src/runtime/runtime.ts"
+    ],
+    "phase37EntriesAlreadyDifferingBeforePass2": {
+      "files": [
+        "01-runtime/package.json"
+      ],
+      "note": "Not touched by Pass 2: unmodified relative to the git base commit above. These already differed from the Phase 37 manifest before Pass 2 began."
+    },
+    "adapterChange": "The React adapter store no longer polls. It holds one engine subscription, updates its snapshot only on commit (and once when the first subscriber attaches), and exposes a pure getSnapshot plus getServerSnapshot."
+  },
+  "changedFiles": {
+    "count": 108,
+    "modified": 32,
+    "added": 75,
+    "deleted": 1,
+    "files": [
+      {
+        "path": ".github/ISSUE_TEMPLATE/bug_report.md",
+        "sha256": "d3cca1b0525e8b9810ead2e53703a923bf7d2d9e4911a2670cc2bfa6db43ad71",
+        "sha256_lf": "d3cca1b0525e8b9810ead2e53703a923bf7d2d9e4911a2670cc2bfa6db43ad71",
+        "bytes": 517,
+        "bytes_lf": 517,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": ".github/ISSUE_TEMPLATE/feature_request.md",
+        "sha256": "c45dd12d0304fbc716e0785e3e487ed5b93755186334a1ffba3ed66be8dd52c2",
+        "sha256_lf": "c45dd12d0304fbc716e0785e3e487ed5b93755186334a1ffba3ed66be8dd52c2",
+        "bytes": 367,
+        "bytes_lf": 367,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": ".github/pull_request_template.md",
+        "sha256": "f2406c499b4f57fb8bc9fc76cc85b0dc156cee3869193342c9bd2b11d53889a0",
+        "sha256_lf": "f2406c499b4f57fb8bc9fc76cc85b0dc156cee3869193342c9bd2b11d53889a0",
+        "bytes": 408,
+        "bytes_lf": 408,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": ".github/workflows/ci.yml",
+        "sha256": "458884fedd7fe8478553eef4a2604fc1f32a519d8c582285763a8cb7cd44b953",
+        "sha256_lf": "458884fedd7fe8478553eef4a2604fc1f32a519d8c582285763a8cb7cd44b953",
+        "bytes": 832,
+        "bytes_lf": 832,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": ".gitignore",
+        "sha256": "2c0843082e05c12c78bf6c4ff2f331a4b37b0904e073046f9b54e2176e727b9c",
+        "sha256_lf": "2c0843082e05c12c78bf6c4ff2f331a4b37b0904e073046f9b54e2176e727b9c",
+        "bytes": 86,
+        "bytes_lf": 86,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "01-runtime/packages/core/LICENSE",
+        "sha256": "3ec702791941218d5235ab8dc33c4fc5152688ece3ed8a39d90f73f5b9f40d89",
+        "sha256_lf": "3ec702791941218d5235ab8dc33c4fc5152688ece3ed8a39d90f73f5b9f40d89",
+        "bytes": 1069,
+        "bytes_lf": 1069,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "01-runtime/packages/core/README.md",
+        "sha256": "ebd114f193ac7ec0483749bc65ee7ff8fd7e21da6d314a9f231a1cae2e40f28b",
+        "sha256_lf": "ebd114f193ac7ec0483749bc65ee7ff8fd7e21da6d314a9f231a1cae2e40f28b",
+        "bytes": 1710,
+        "bytes_lf": 1710,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "01-runtime/packages/core/package.json",
+        "sha256": "720b7a1ac4ef36fe4521f8647278646bcb11d8be3edda25e24bf1ef78c98d586",
+        "sha256_lf": "720b7a1ac4ef36fe4521f8647278646bcb11d8be3edda25e24bf1ef78c98d586",
+        "bytes": 1386,
+        "bytes_lf": 1386,
+        "eol": "lf",
+        "change": "modified"
+      },
+      {
+        "path": "01-runtime/packages/core/src/engine.ts",
+        "sha256": "f508777666bd3bf4e3a8bff6f046b9ffbba91ac2be08d43a83955a1a2c2ff6ae",
+        "sha256_lf": "f508777666bd3bf4e3a8bff6f046b9ffbba91ac2be08d43a83955a1a2c2ff6ae",
+        "bytes": 4602,
+        "bytes_lf": 4602,
+        "eol": "lf",
+        "change": "modified"
+      },
+      {
+        "path": "01-runtime/packages/core/src/runtime/runtime.ts",
+        "sha256": "3ebf2e3c48a1c454ce0168a061261525815fdd29f744f5ca39cfaf3cf13f4899",
+        "sha256_lf": "3ebf2e3c48a1c454ce0168a061261525815fdd29f744f5ca39cfaf3cf13f4899",
+        "bytes": 5121,
+        "bytes_lf": 5121,
+        "eol": "lf",
+        "change": "modified"
+      },
+      {
+        "path": "01-runtime/packages/core/tsconfig.json",
+        "sha256": "f3ac7213c063952f2fec228996a32500cb4e4a9a49a30317480faea79b7b8830",
+        "sha256_lf": "f3ac7213c063952f2fec228996a32500cb4e4a9a49a30317480faea79b7b8830",
+        "bytes": 279,
+        "bytes_lf": 279,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "01-runtime/packages/core/tsup.config.ts",
+        "sha256": "0694e079036fa8f6ebc892f46c70dcdd3ab09fd4b19006acf830e1c1812b0c30",
+        "sha256_lf": "0694e079036fa8f6ebc892f46c70dcdd3ab09fd4b19006acf830e1c1812b0c30",
+        "bytes": 192,
+        "bytes_lf": 192,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "01-runtime/packages/react/LICENSE",
+        "sha256": "3ec702791941218d5235ab8dc33c4fc5152688ece3ed8a39d90f73f5b9f40d89",
+        "sha256_lf": "3ec702791941218d5235ab8dc33c4fc5152688ece3ed8a39d90f73f5b9f40d89",
+        "bytes": 1069,
+        "bytes_lf": 1069,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "01-runtime/packages/react/README.md",
+        "sha256": "92e19b1ff8fdf779fec64123b1c098375c9c362ba94b95b7cbed1b3553ffc3b7",
+        "sha256_lf": "92e19b1ff8fdf779fec64123b1c098375c9c362ba94b95b7cbed1b3553ffc3b7",
+        "bytes": 1779,
+        "bytes_lf": 1779,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "01-runtime/packages/react/package.json",
+        "sha256": "f8d1c6453e2c619284624f8253ade8cfa71da60a13566ca6b5c1158030a15cfd",
+        "sha256_lf": "f8d1c6453e2c619284624f8253ade8cfa71da60a13566ca6b5c1158030a15cfd",
+        "bytes": 1441,
+        "bytes_lf": 1441,
+        "eol": "lf",
+        "change": "modified"
+      },
+      {
+        "path": "01-runtime/packages/react/src/provider.tsx",
+        "sha256": "29ce6ee33cfdc75f5761d74c14efdbe6a255cbc9142ebe78bdee66fb64f2fc2d",
+        "sha256_lf": "29ce6ee33cfdc75f5761d74c14efdbe6a255cbc9142ebe78bdee66fb64f2fc2d",
+        "bytes": 2203,
+        "bytes_lf": 2203,
+        "eol": "lf",
+        "change": "modified"
+      },
+      {
+        "path": "01-runtime/packages/react/src/store.ts",
+        "sha256": "809ff4d380f544a9909677d126df971bc0cf73348001622b308f6dde68f0b213",
+        "sha256_lf": "809ff4d380f544a9909677d126df971bc0cf73348001622b308f6dde68f0b213",
+        "bytes": 1741,
+        "bytes_lf": 1741,
+        "eol": "lf",
+        "change": "modified"
+      },
+      {
+        "path": "01-runtime/packages/react/tsconfig.json",
+        "sha256": "f3ac7213c063952f2fec228996a32500cb4e4a9a49a30317480faea79b7b8830",
+        "sha256_lf": "f3ac7213c063952f2fec228996a32500cb4e4a9a49a30317480faea79b7b8830",
+        "bytes": 279,
+        "bytes_lf": 279,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "01-runtime/packages/react/tsup.config.ts",
+        "sha256": "0694e079036fa8f6ebc892f46c70dcdd3ab09fd4b19006acf830e1c1812b0c30",
+        "sha256_lf": "0694e079036fa8f6ebc892f46c70dcdd3ab09fd4b19006acf830e1c1812b0c30",
+        "bytes": 192,
+        "bytes_lf": 192,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "01-runtime/scripts/update-manifest-pass2.mjs",
+        "sha256": "8c0c7d2c29a10dc24c25dfd5dd2fee353e8ee0ae66ddd81fa91c6f5c33f9603f",
+        "sha256_lf": "8c0c7d2c29a10dc24c25dfd5dd2fee353e8ee0ae66ddd81fa91c6f5c33f9603f",
+        "bytes": 4596,
+        "bytes_lf": 4596,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "01-runtime/scripts/verify-manifest-pass2.mjs",
+        "sha256": "00217928f969c39b934aab3295b467f12044135d7605c82c50ab169f25ca9b06",
+        "sha256_lf": "00217928f969c39b934aab3295b467f12044135d7605c82c50ab169f25ca9b06",
+        "bytes": 11089,
+        "bytes_lf": 11089,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "06-project/README.md",
+        "sha256": "8fe17d36b926f320e0cf575bca121c612552ade56655e7a77fbee83feaecb693",
+        "sha256_lf": "8fe17d36b926f320e0cf575bca121c612552ade56655e7a77fbee83feaecb693",
+        "bytes": 7281,
+        "bytes_lf": 7281,
+        "eol": "lf",
+        "change": "modified"
+      },
+      {
+        "path": "06-project/app/(site)/benchmark/page.tsx",
+        "sha256": "35154f9c29e609cf661fce8558480fed81b8db45647b547047b6c2f260a0e342",
+        "sha256_lf": "35154f9c29e609cf661fce8558480fed81b8db45647b547047b6c2f260a0e342",
+        "bytes": 6483,
+        "bytes_lf": 6483,
+        "eol": "lf",
+        "change": "modified"
+      },
+      {
+        "path": "06-project/app/(site)/case-study/page.tsx",
+        "sha256": "9da4b3fa05de9a5c39bbd96fdd947556eaab0685bbfe5dfccc9080f50ab24b04",
+        "sha256_lf": "9da4b3fa05de9a5c39bbd96fdd947556eaab0685bbfe5dfccc9080f50ab24b04",
+        "bytes": 16702,
+        "bytes_lf": 16702,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "06-project/app/(site)/page.tsx",
+        "sha256": "623063878c6006d2d1f25f59d212d0ea73645ffd384fdbc8806531d733f67824",
+        "sha256_lf": "623063878c6006d2d1f25f59d212d0ea73645ffd384fdbc8806531d733f67824",
+        "bytes": 5572,
+        "bytes_lf": 5572,
+        "eol": "lf",
+        "change": "modified"
+      },
+      {
+        "path": "06-project/app/globals.css",
+        "sha256": "c4be3a6decd2ca45400324cf49478e69cc93f57a19f702b1b9f1d3816c977b1e",
+        "sha256_lf": "c4be3a6decd2ca45400324cf49478e69cc93f57a19f702b1b9f1d3816c977b1e",
+        "bytes": 11015,
+        "bytes_lf": 11015,
+        "eol": "lf",
+        "change": "modified"
+      },
+      {
+        "path": "06-project/app/icon.svg",
+        "sha256": "24bdfe2741a2cd96c504f9b4634edd29bb0fa4d63674836d39f304602c222f05",
+        "sha256_lf": "24bdfe2741a2cd96c504f9b4634edd29bb0fa4d63674836d39f304602c222f05",
+        "bytes": 309,
+        "bytes_lf": 309,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "06-project/app/pages.css",
+        "sha256": "eef1a53a185f0162096f8ae0b2de85b4eed9fee947237f017b59430ef31d8251",
+        "sha256_lf": "eef1a53a185f0162096f8ae0b2de85b4eed9fee947237f017b59430ef31d8251",
+        "bytes": 17226,
+        "bytes_lf": 17226,
+        "eol": "lf",
+        "change": "modified"
+      },
+      {
+        "path": "06-project/app/studio.css",
+        "sha256": "5c3b9f8b68c3bf5850ccdb1159744caa03e6f5cfc5ad8bfaaaac9ad4d6de4370",
+        "sha256_lf": "5c3b9f8b68c3bf5850ccdb1159744caa03e6f5cfc5ad8bfaaaac9ad4d6de4370",
+        "bytes": 21042,
+        "bytes_lf": 21042,
+        "eol": "lf",
+        "change": "modified"
+      },
+      {
+        "path": "06-project/components/architecture/explorer.tsx",
+        "sha256": "28a95647cf941227626e64b21c37bee833ffa6504e059dd3821e062699c43f5f",
+        "sha256_lf": "28a95647cf941227626e64b21c37bee833ffa6504e059dd3821e062699c43f5f",
+        "bytes": 9707,
+        "bytes_lf": 9707,
+        "eol": "lf",
+        "change": "modified"
+      },
+      {
+        "path": "06-project/components/engine-boundary.tsx",
+        "sha256": "dd164566fb34eccd5444fd3bb62cacc5046c365cfb5d917d160e987608cd6ec4",
+        "sha256_lf": "dd164566fb34eccd5444fd3bb62cacc5046c365cfb5d917d160e987608cd6ec4",
+        "bytes": 5037,
+        "bytes_lf": 5037,
+        "eol": "lf",
+        "change": "modified"
+      },
+      {
+        "path": "06-project/components/preview/preview.css",
+        "sha256": "bfba23feff5de714c75648ca919db3b9e5d4f9fbaf37b5b541652a051ea00610",
+        "sha256_lf": "bfba23feff5de714c75648ca919db3b9e5d4f9fbaf37b5b541652a051ea00610",
+        "bytes": 13814,
+        "bytes_lf": 13814,
+        "eol": "lf",
+        "change": "modified"
+      },
+      {
+        "path": "06-project/components/shell/site-header.tsx",
+        "sha256": "a9df3dbfcd0b30793658930b455d46ef046328e3d0bab6f5be57faceaf1a2635",
+        "sha256_lf": "a9df3dbfcd0b30793658930b455d46ef046328e3d0bab6f5be57faceaf1a2635",
+        "bytes": 3261,
+        "bytes_lf": 3261,
+        "eol": "lf",
+        "change": "modified"
+      },
+      {
+        "path": "06-project/docs/README.md",
+        "sha256": "c468c007051884b90d5aa070830711516925a29ed76b751a67b3794bfad81bb8",
+        "sha256_lf": "c468c007051884b90d5aa070830711516925a29ed76b751a67b3794bfad81bb8",
+        "bytes": 3507,
+        "bytes_lf": 3507,
+        "eol": "lf",
+        "change": "modified"
+      },
+      {
+        "path": "06-project/docs/architecture.md",
+        "sha256": "e324a1c4557a3bb5817de814f7536aa9ef220645923836d93537b7ad3e5f3331",
+        "sha256_lf": "e324a1c4557a3bb5817de814f7536aa9ef220645923836d93537b7ad3e5f3331",
+        "bytes": 12864,
+        "bytes_lf": 12864,
+        "eol": "lf",
+        "change": "modified"
+      },
+      {
+        "path": "06-project/docs/deployment.md",
+        "sha256": "d0daa3c1a8ac52c4fbb797c77b1ca07ce85100437e33f8be4f2fc0070e99bf11",
+        "sha256_lf": "d0daa3c1a8ac52c4fbb797c77b1ca07ce85100437e33f8be4f2fc0070e99bf11",
+        "bytes": 4401,
+        "bytes_lf": 4401,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "06-project/docs/features.md",
+        "sha256": "0c879d427afaa71f459f90c1a1e3fbb97b00d06e3a2c32c95265ec8c5b4544a6",
+        "sha256_lf": "0c879d427afaa71f459f90c1a1e3fbb97b00d06e3a2c32c95265ec8c5b4544a6",
+        "bytes": 10162,
+        "bytes_lf": 10162,
+        "eol": "lf",
+        "change": "modified"
+      },
+      {
+        "path": "06-project/docs/limitations.md",
+        "sha256": "ce8a009bde30ceb251f9ccc1b36e0192c93ae844c918a749cbf2c32e4fe92c5e",
+        "sha256_lf": "ce8a009bde30ceb251f9ccc1b36e0192c93ae844c918a749cbf2c32e4fe92c5e",
+        "bytes": 16398,
+        "bytes_lf": 16398,
+        "eol": "lf",
+        "change": "modified"
+      },
+      {
+        "path": "06-project/docs/linkedin-launch.md",
+        "sha256": "1c6ed33b3093561393b890881c94a36b9eeefe8596a935631a539c282cbcf046",
+        "sha256_lf": "1c6ed33b3093561393b890881c94a36b9eeefe8596a935631a539c282cbcf046",
+        "bytes": 4094,
+        "bytes_lf": 4094,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "06-project/docs/testing.md",
+        "sha256": "e479881e7952703c69f6f7e830fbde837a0691f393039a0573827ed2af3454d9",
+        "sha256_lf": "e479881e7952703c69f6f7e830fbde837a0691f393039a0573827ed2af3454d9",
+        "bytes": 9371,
+        "bytes_lf": 9371,
+        "eol": "lf",
+        "change": "modified"
+      },
+      {
+        "path": "06-project/engine/definitions.ts",
+        "sha256": "73ebab51068c6217938e1a581c7ee616c018490e8c613dc872dbcdddf111cc43",
+        "sha256_lf": "73ebab51068c6217938e1a581c7ee616c018490e8c613dc872dbcdddf111cc43",
+        "bytes": 6342,
+        "bytes_lf": 6342,
+        "eol": "lf",
+        "change": "modified"
+      },
+      {
+        "path": "06-project/features/landing/hero-demo.tsx",
+        "sha256": "450309d26b5355ee8afa8bc0be0c6c8eb046677425318c519196006286ddf809",
+        "sha256_lf": "450309d26b5355ee8afa8bc0be0c6c8eb046677425318c519196006286ddf809",
+        "bytes": 4051,
+        "bytes_lf": 4051,
+        "eol": "lf",
+        "change": "modified"
+      },
+      {
+        "path": "06-project/features/personalized/personalized-runtime.tsx",
+        "sha256": "2f7d63ae05001a275cbc5e49eab00740d02e958f58be13dc4f516fe0da498c81",
+        "sha256_lf": "2f7d63ae05001a275cbc5e49eab00740d02e958f58be13dc4f516fe0da498c81",
+        "bytes": 7088,
+        "bytes_lf": 7088,
+        "eol": "lf",
+        "change": "modified"
+      },
+      {
+        "path": "06-project/features/playground/labs.tsx",
+        "sha256": "ee1bb27733e6e9f5db103b42ce731a74040c018b770ae1538dc6c6374b491564",
+        "sha256_lf": "ee1bb27733e6e9f5db103b42ce731a74040c018b770ae1538dc6c6374b491564",
+        "bytes": 11063,
+        "bytes_lf": 11063,
+        "eol": "lf",
+        "change": "modified"
+      },
+      {
+        "path": "06-project/features/resource-panel/resource-panel.tsx",
+        "sha256": "bc422fd6db88431b90e71195e4f3a107488360ce1bf278b95885ca0b0ebc6590",
+        "sha256_lf": "bc422fd6db88431b90e71195e4f3a107488360ce1bf278b95885ca0b0ebc6590",
+        "bytes": 6996,
+        "bytes_lf": 6996,
+        "eol": "lf",
+        "change": "modified"
+      },
+      {
+        "path": "06-project/features/transition-inspector/delta-view.tsx",
+        "sha256": "017cc737db942fd306e86614cefd7b369050b517b4cce30545627b219bb15ba5",
+        "sha256_lf": "017cc737db942fd306e86614cefd7b369050b517b4cce30545627b219bb15ba5",
+        "bytes": 9435,
+        "bytes_lf": 9435,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "06-project/features/transition-inspector/pipeline.tsx",
+        "sha256": "bf7ef91eba4dee664757ce31fce967d5a2706cc5b47ba2c9c65c597a7a8d7cb0",
+        "sha256_lf": "bf7ef91eba4dee664757ce31fce967d5a2706cc5b47ba2c9c65c597a7a8d7cb0",
+        "bytes": 2914,
+        "bytes_lf": 2914,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "06-project/features/transition-inspector/transition-inspector.tsx",
+        "sha256": "28522146048fc0cc57a035e2122cdbdfa411631ab4088fd6eec287c8f2c66fbc",
+        "sha256_lf": "28522146048fc0cc57a035e2122cdbdfa411631ab4088fd6eec287c8f2c66fbc",
+        "bytes": 7164,
+        "bytes_lf": 7164,
+        "eol": "lf",
+        "change": "modified"
+      },
+      {
+        "path": "06-project/features/transition-recorder/recorder.ts",
+        "sha256": "337dd02c6917c6c476be117af499955287de57df232452311fa27fed39bb6cbc",
+        "sha256_lf": "337dd02c6917c6c476be117af499955287de57df232452311fa27fed39bb6cbc",
+        "bytes": 3989,
+        "bytes_lf": 3989,
+        "eol": "lf",
+        "change": "modified"
+      },
+      {
+        "path": "06-project/lib/evidence.ts",
+        "sha256": "2a835480ca96ef1500a7d34d3dd515f618f55e4886d537299d159e1222929583",
+        "sha256_lf": "2a835480ca96ef1500a7d34d3dd515f618f55e4886d537299d159e1222929583",
+        "bytes": 6773,
+        "bytes_lf": 6773,
+        "eol": "lf",
+        "change": "modified"
+      },
+      {
+        "path": "06-project/next.config.ts",
+        "sha256": "50d3aeb79e44802b5763307a905fbf660d47084041b60f410eddb7c1f3d24408",
+        "sha256_lf": "50d3aeb79e44802b5763307a905fbf660d47084041b60f410eddb7c1f3d24408",
+        "bytes": 386,
+        "bytes_lf": 386,
+        "eol": "lf",
+        "change": "modified"
+      },
+      {
+        "path": "06-project/package-lock.json",
+        "change": "deleted"
+      },
+      {
+        "path": "06-project/tests/adapter.test.tsx",
+        "sha256": "a9550ae7c330b194007d411ba82892d775e989f442476305f2b5df7c07baecd9",
+        "sha256_lf": "a9550ae7c330b194007d411ba82892d775e989f442476305f2b5df7c07baecd9",
+        "bytes": 9198,
+        "bytes_lf": 9198,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "06-project/tests/cookie.test.ts",
+        "sha256": "fa05c72fdf1929f445bd6b0695ee6ec4fca8a8393826d465c79e6b1486535f5b",
+        "sha256_lf": "fa05c72fdf1929f445bd6b0695ee6ec4fca8a8393826d465c79e6b1486535f5b",
+        "bytes": 1321,
+        "bytes_lf": 1321,
+        "eol": "lf",
+        "change": "modified"
+      },
+      {
+        "path": "06-project/tests/presentation.test.tsx",
+        "sha256": "e5c677ee320051fe3adfc689b82f31f064b9dd34ce3c921be06a770e343e498a",
+        "sha256_lf": "e5c677ee320051fe3adfc689b82f31f064b9dd34ce3c921be06a770e343e498a",
+        "bytes": 3680,
+        "bytes_lf": 3680,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "CHANGELOG.md",
+        "sha256": "f0beb38cdf00278e8d3a8a295b2aed01b226983537e70420ddd4cbe0b3c344b3",
+        "sha256_lf": "f0beb38cdf00278e8d3a8a295b2aed01b226983537e70420ddd4cbe0b3c344b3",
+        "bytes": 1866,
+        "bytes_lf": 1866,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "CODE_OF_CONDUCT.md",
+        "sha256": "ce5bb91c56b9a94aa6ce7ee9c159d1134a382e643ac2ce0efa0d0c20faed71f3",
+        "sha256_lf": "ce5bb91c56b9a94aa6ce7ee9c159d1134a382e643ac2ce0efa0d0c20faed71f3",
+        "bytes": 1681,
+        "bytes_lf": 1681,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "CONTRIBUTING.md",
+        "sha256": "b24c3a075a607c020a3c99fe1ff24bbbc07feed14378730107f003b1cf66663b",
+        "sha256_lf": "b24c3a075a607c020a3c99fe1ff24bbbc07feed14378730107f003b1cf66663b",
+        "bytes": 2578,
+        "bytes_lf": 2578,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "LICENSE",
+        "sha256": "3ec702791941218d5235ab8dc33c4fc5152688ece3ed8a39d90f73f5b9f40d89",
+        "sha256_lf": "3ec702791941218d5235ab8dc33c4fc5152688ece3ed8a39d90f73f5b9f40d89",
+        "bytes": 1069,
+        "bytes_lf": 1069,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "PUBLIC-RELEASE-CHECKLIST.md",
+        "sha256": "8a7a40bfc1810c841966d736bc2be867a5a20025cf3c3439dd6f96b7d36ec274",
+        "sha256_lf": "8a7a40bfc1810c841966d736bc2be867a5a20025cf3c3439dd6f96b7d36ec274",
+        "bytes": 7846,
+        "bytes_lf": 7846,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "README.md",
+        "sha256": "e24322b937bed11a21c8ec8da6b7536f08ca4c9d8e014a59050a192007adf393",
+        "sha256_lf": "e24322b937bed11a21c8ec8da6b7536f08ca4c9d8e014a59050a192007adf393",
+        "bytes": 10959,
+        "bytes_lf": 10959,
+        "eol": "lf",
+        "change": "modified"
+      },
+      {
+        "path": "RESEARCH.md",
+        "sha256": "42a0b6d27ba6a2fe39d351edad4d22d0211cb7ff46a1ec67e7f72f0dd2527e15",
+        "sha256_lf": "42a0b6d27ba6a2fe39d351edad4d22d0211cb7ff46a1ec67e7f72f0dd2527e15",
+        "bytes": 5857,
+        "bytes_lf": 5857,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "SECURITY.md",
+        "sha256": "4fffcdd84e594a84ec33a78252ed1989ca8597aa010e0c7ac117526fe2b46bfd",
+        "sha256_lf": "4fffcdd84e594a84ec33a78252ed1989ca8597aa010e0c7ac117526fe2b46bfd",
+        "bytes": 1022,
+        "bytes_lf": 1022,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "docs/api.md",
+        "sha256": "d3a60f9039e095944c3d0a6dd14fe12c5304f57906e75d4ea5c7f81cf3a2c584",
+        "sha256_lf": "d3a60f9039e095944c3d0a6dd14fe12c5304f57906e75d4ea5c7f81cf3a2c584",
+        "bytes": 6734,
+        "bytes_lf": 6734,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "docs/architecture.md",
+        "sha256": "523622d0cb9e5ac0b627fedd24f940e4b20308d7eeaaf9a26ac8341dc22d5e7a",
+        "sha256_lf": "523622d0cb9e5ac0b627fedd24f940e4b20308d7eeaaf9a26ac8341dc22d5e7a",
+        "bytes": 4008,
+        "bytes_lf": 4008,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "docs/component-adaptation.md",
+        "sha256": "96a47baff6c8c868c9e7734432f401b769bc0744fc1560afd22fe522e419a247",
+        "sha256_lf": "96a47baff6c8c868c9e7734432f401b769bc0744fc1560afd22fe522e419a247",
+        "bytes": 3579,
+        "bytes_lf": 3579,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "docs/cultures-and-themes.md",
+        "sha256": "890e36825f3ef286ffd729d10163a481c9c3b2593f8eb9642b5fbb5ac95bf6a7",
+        "sha256_lf": "890e36825f3ef286ffd729d10163a481c9c3b2593f8eb9642b5fbb5ac95bf6a7",
+        "bytes": 4713,
+        "bytes_lf": 4713,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "docs/getting-started.md",
+        "sha256": "4f449b63c2a2d824578665affc2b232849a6758c4f8088b7c15486b64d252912",
+        "sha256_lf": "4f449b63c2a2d824578665affc2b232849a6758c4f8088b7c15486b64d252912",
+        "bytes": 4646,
+        "bytes_lf": 4646,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "docs/protocol.md",
+        "sha256": "a86a25e783a9f60115e5f0284d6932e597d75bceea4127fe5aa7f312d795b33d",
+        "sha256_lf": "a86a25e783a9f60115e5f0284d6932e597d75bceea4127fe5aa7f312d795b33d",
+        "bytes": 4533,
+        "bytes_lf": 4533,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "docs/resources-and-motion.md",
+        "sha256": "eb34a2d4729a4f210616592ad217658965a46d76598cdf1362f8d93dcdbbf94d",
+        "sha256_lf": "eb34a2d4729a4f210616592ad217658965a46d76598cdf1362f8d93dcdbbf94d",
+        "bytes": 6171,
+        "bytes_lf": 6171,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "docs/ssr.md",
+        "sha256": "4c509d97537cd12f44f4f3d1213af425f1cb8feff1eac2523e3b2ea8ec3b893c",
+        "sha256_lf": "4c509d97537cd12f44f4f3d1213af425f1cb8feff1eac2523e3b2ea8ec3b893c",
+        "bytes": 5331,
+        "bytes_lf": 5331,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "docs/troubleshooting.md",
+        "sha256": "f4227eb063a098ccbac35530eab234d40dbbf68201c45ce56d221023389701eb",
+        "sha256_lf": "f4227eb063a098ccbac35530eab234d40dbbf68201c45ce56d221023389701eb",
+        "bytes": 4391,
+        "bytes_lf": 4391,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "examples/README.md",
+        "sha256": "6f435e0a3589ee5ffdb03b8de69d7af32d36f10dc68abef7175377830d0e8e8e",
+        "sha256_lf": "6f435e0a3589ee5ffdb03b8de69d7af32d36f10dc68abef7175377830d0e8e8e",
+        "bytes": 1182,
+        "bytes_lf": 1182,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "examples/basic-react/README.md",
+        "sha256": "9fdd14065c34221a56f39ddd48889e94ef70f5cbee5cd57ec2fbd07495a4d866",
+        "sha256_lf": "9fdd14065c34221a56f39ddd48889e94ef70f5cbee5cd57ec2fbd07495a4d866",
+        "bytes": 617,
+        "bytes_lf": 617,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "examples/basic-react/index.html",
+        "sha256": "dd431fb4352cc984fe9705eb0dfc47fa3625ac7693088dd3063ca5ca5d248c91",
+        "sha256_lf": "dd431fb4352cc984fe9705eb0dfc47fa3625ac7693088dd3063ca5ca5d248c91",
+        "bytes": 320,
+        "bytes_lf": 320,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "examples/basic-react/package.json",
+        "sha256": "770ee7bd48a6755cc3bd80049d3c46c2e32adb7e285ffd540bb0e31bef04c0ba",
+        "sha256_lf": "770ee7bd48a6755cc3bd80049d3c46c2e32adb7e285ffd540bb0e31bef04c0ba",
+        "bytes": 533,
+        "bytes_lf": 533,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "examples/basic-react/src/App.tsx",
+        "sha256": "0580e5a66c8da67820088b948c8204b2d4548b6478d5d1fa58cc1b0029757efe",
+        "sha256_lf": "0580e5a66c8da67820088b948c8204b2d4548b6478d5d1fa58cc1b0029757efe",
+        "bytes": 2440,
+        "bytes_lf": 2440,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "examples/basic-react/src/experience.ts",
+        "sha256": "a862dfb802086efdaf8e0ab6e3d273603fc2c192b9a99a16cf5bf04bb9210a92",
+        "sha256_lf": "a862dfb802086efdaf8e0ab6e3d273603fc2c192b9a99a16cf5bf04bb9210a92",
+        "bytes": 1622,
+        "bytes_lf": 1622,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "examples/basic-react/src/main.tsx",
+        "sha256": "db12f0c03759ae9c1d97ad6fa7573e4debc4149facc013d154c9f7141f297fbf",
+        "sha256_lf": "db12f0c03759ae9c1d97ad6fa7573e4debc4149facc013d154c9f7141f297fbf",
+        "bytes": 481,
+        "bytes_lf": 481,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "examples/basic-react/tsconfig.json",
+        "sha256": "de65f79c677e71fdcfc9acb42b5b6bbd4b139fdf8e16bb8257b1d04efb6286ac",
+        "sha256_lf": "de65f79c677e71fdcfc9acb42b5b6bbd4b139fdf8e16bb8257b1d04efb6286ac",
+        "bytes": 303,
+        "bytes_lf": 303,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "examples/basic-react/vite.config.ts",
+        "sha256": "23ccfdc62a166532ddfdbf8fbf538ebc6ca39d1865589d666364db1fb3dea46a",
+        "sha256_lf": "23ccfdc62a166532ddfdbf8fbf538ebc6ca39d1865589d666364db1fb3dea46a",
+        "bytes": 133,
+        "bytes_lf": 133,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "examples/component-adaptation/README.md",
+        "sha256": "9bed1c28d4d02b1246f858f3f62a95cc5289310eaf12fdd6d774e6028befceec",
+        "sha256_lf": "9bed1c28d4d02b1246f858f3f62a95cc5289310eaf12fdd6d774e6028befceec",
+        "bytes": 565,
+        "bytes_lf": 565,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "examples/component-adaptation/index.html",
+        "sha256": "a8d9cba4a17e500b4641b87010413eb2793cd54fba7e8c3b20f4675d05199681",
+        "sha256_lf": "a8d9cba4a17e500b4641b87010413eb2793cd54fba7e8c3b20f4675d05199681",
+        "bytes": 329,
+        "bytes_lf": 329,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "examples/component-adaptation/package.json",
+        "sha256": "6f8f5d5c2e11c288544a0e6d9129f61df5d059a35a325263d20550e760b08735",
+        "sha256_lf": "6f8f5d5c2e11c288544a0e6d9129f61df5d059a35a325263d20550e760b08735",
+        "bytes": 542,
+        "bytes_lf": 542,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "examples/component-adaptation/src/App.tsx",
+        "sha256": "c03daa60ef25593f45404ed71b2534f9cef30e71fee738ca5838a68e6de6fc64",
+        "sha256_lf": "c03daa60ef25593f45404ed71b2534f9cef30e71fee738ca5838a68e6de6fc64",
+        "bytes": 2706,
+        "bytes_lf": 2706,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "examples/component-adaptation/src/experience.ts",
+        "sha256": "a9be4728de644165eb395e47436db8324512eae526c08e302806327f5522becb",
+        "sha256_lf": "a9be4728de644165eb395e47436db8324512eae526c08e302806327f5522becb",
+        "bytes": 1351,
+        "bytes_lf": 1351,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "examples/component-adaptation/src/main.tsx",
+        "sha256": "db12f0c03759ae9c1d97ad6fa7573e4debc4149facc013d154c9f7141f297fbf",
+        "sha256_lf": "db12f0c03759ae9c1d97ad6fa7573e4debc4149facc013d154c9f7141f297fbf",
+        "bytes": 481,
+        "bytes_lf": 481,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "examples/component-adaptation/tsconfig.json",
+        "sha256": "de65f79c677e71fdcfc9acb42b5b6bbd4b139fdf8e16bb8257b1d04efb6286ac",
+        "sha256_lf": "de65f79c677e71fdcfc9acb42b5b6bbd4b139fdf8e16bb8257b1d04efb6286ac",
+        "bytes": 303,
+        "bytes_lf": 303,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "examples/component-adaptation/vite.config.ts",
+        "sha256": "23ccfdc62a166532ddfdbf8fbf538ebc6ca39d1865589d666364db1fb3dea46a",
+        "sha256_lf": "23ccfdc62a166532ddfdbf8fbf538ebc6ca39d1865589d666364db1fb3dea46a",
+        "bytes": 133,
+        "bytes_lf": 133,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "examples/next-ssr/README.md",
+        "sha256": "c0692acf4f54d60d4b9f551f44fb636de47be0ea12ccfcb80d44654c9ab1119e",
+        "sha256_lf": "c0692acf4f54d60d4b9f551f44fb636de47be0ea12ccfcb80d44654c9ab1119e",
+        "bytes": 794,
+        "bytes_lf": 794,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "examples/next-ssr/app/client.tsx",
+        "sha256": "a40713796f5de8aced6848086c53fbeaff50544eeab1f757b08c7577e3078681",
+        "sha256_lf": "a40713796f5de8aced6848086c53fbeaff50544eeab1f757b08c7577e3078681",
+        "bytes": 2400,
+        "bytes_lf": 2400,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "examples/next-ssr/app/experience.ts",
+        "sha256": "af0a7ee9a17308992738dea1cbbdedeffbb1e7d0f38c97ae73597c9e8d7f2aff",
+        "sha256_lf": "af0a7ee9a17308992738dea1cbbdedeffbb1e7d0f38c97ae73597c9e8d7f2aff",
+        "bytes": 1498,
+        "bytes_lf": 1498,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "examples/next-ssr/app/layout.tsx",
+        "sha256": "5a9608ec73b4f073694411c290aaed585ae8c473d0563a5ab25c86890f954a8b",
+        "sha256_lf": "5a9608ec73b4f073694411c290aaed585ae8c473d0563a5ab25c86890f954a8b",
+        "bytes": 330,
+        "bytes_lf": 330,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "examples/next-ssr/app/page.tsx",
+        "sha256": "6b7fdcf2d18fa42baac0e2f1c9cdc37dc6b880d6a3e90524567294792c07d232",
+        "sha256_lf": "6b7fdcf2d18fa42baac0e2f1c9cdc37dc6b880d6a3e90524567294792c07d232",
+        "bytes": 651,
+        "bytes_lf": 651,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "examples/next-ssr/next.config.ts",
+        "sha256": "76b53356e0e5e0c3a1d9a7d138dcf724c9a5bf82b8f8b17cf964804281c4751e",
+        "sha256_lf": "76b53356e0e5e0c3a1d9a7d138dcf724c9a5bf82b8f8b17cf964804281c4751e",
+        "bytes": 331,
+        "bytes_lf": 331,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "examples/next-ssr/package.json",
+        "sha256": "d5b3658b480a13a6227ac297e8f0a7b2aec8ecb5ae4ff72cf17e12e6c7ddcf71",
+        "sha256_lf": "d5b3658b480a13a6227ac297e8f0a7b2aec8ecb5ae4ff72cf17e12e6c7ddcf71",
+        "bytes": 533,
+        "bytes_lf": 533,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "examples/next-ssr/tsconfig.json",
+        "sha256": "e74c4ee5fa3ce582c3724b1323fb1f43bd625a80d11456e963ae468db465e1db",
+        "sha256_lf": "e74c4ee5fa3ce582c3724b1323fb1f43bd625a80d11456e963ae468db465e1db",
+        "bytes": 639,
+        "bytes_lf": 639,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "examples/personalized-ssr/README.md",
+        "sha256": "16c238236a83525ba5bc9a7e33a228e5fa87a79b58e745336e57f9ec19cd58c1",
+        "sha256_lf": "16c238236a83525ba5bc9a7e33a228e5fa87a79b58e745336e57f9ec19cd58c1",
+        "bytes": 1055,
+        "bytes_lf": 1055,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "examples/personalized-ssr/app/client.tsx",
+        "sha256": "5cb54a726c1c1cc5aea59558cd76b11cc1456ac10d5580b7af1bb6629ffd9803",
+        "sha256_lf": "5cb54a726c1c1cc5aea59558cd76b11cc1456ac10d5580b7af1bb6629ffd9803",
+        "bytes": 2856,
+        "bytes_lf": 2856,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "examples/personalized-ssr/app/cookie.ts",
+        "sha256": "5374920d63bf2e9e078dc5702a2688f4e077f0beaabbf826cba9f556ad4a30bd",
+        "sha256_lf": "5374920d63bf2e9e078dc5702a2688f4e077f0beaabbf826cba9f556ad4a30bd",
+        "bytes": 751,
+        "bytes_lf": 751,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "examples/personalized-ssr/app/experience.ts",
+        "sha256": "af0a7ee9a17308992738dea1cbbdedeffbb1e7d0f38c97ae73597c9e8d7f2aff",
+        "sha256_lf": "af0a7ee9a17308992738dea1cbbdedeffbb1e7d0f38c97ae73597c9e8d7f2aff",
+        "bytes": 1498,
+        "bytes_lf": 1498,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "examples/personalized-ssr/app/layout.tsx",
+        "sha256": "ebe8cbd666e129451b3bf58c340cc70555a648138ec9e68df1a890f43203c606",
+        "sha256_lf": "ebe8cbd666e129451b3bf58c340cc70555a648138ec9e68df1a890f43203c606",
+        "bytes": 335,
+        "bytes_lf": 335,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "examples/personalized-ssr/app/page.tsx",
+        "sha256": "e6ed69b6e4af1f43368ec13109e8f74f8fdddf062f56c949b748a289489ee72c",
+        "sha256_lf": "e6ed69b6e4af1f43368ec13109e8f74f8fdddf062f56c949b748a289489ee72c",
+        "bytes": 759,
+        "bytes_lf": 759,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "examples/personalized-ssr/next.config.ts",
+        "sha256": "76b53356e0e5e0c3a1d9a7d138dcf724c9a5bf82b8f8b17cf964804281c4751e",
+        "sha256_lf": "76b53356e0e5e0c3a1d9a7d138dcf724c9a5bf82b8f8b17cf964804281c4751e",
+        "bytes": 331,
+        "bytes_lf": 331,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "examples/personalized-ssr/package.json",
+        "sha256": "1917476cb590171cd3943291f31149be19d3dba23a6783b2191aaa7c645302e6",
+        "sha256_lf": "1917476cb590171cd3943291f31149be19d3dba23a6783b2191aaa7c645302e6",
+        "bytes": 541,
+        "bytes_lf": 541,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "examples/personalized-ssr/tsconfig.json",
+        "sha256": "e74c4ee5fa3ce582c3724b1323fb1f43bd625a80d11456e963ae468db465e1db",
+        "sha256_lf": "e74c4ee5fa3ce582c3724b1323fb1f43bd625a80d11456e963ae468db465e1db",
+        "bytes": 639,
+        "bytes_lf": 639,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "package-lock.json",
+        "sha256": "2b822e79c1af10edb6b9bbe42efcf6106b8751a4ef07750d8646d554cf0a7f5f",
+        "sha256_lf": "2b822e79c1af10edb6b9bbe42efcf6106b8751a4ef07750d8646d554cf0a7f5f",
+        "bytes": 174016,
+        "bytes_lf": 174016,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "package.json",
+        "sha256": "01e9c93fa81bc39e5c0b6b75cf739fbeb871748faa4c924dbf6c590ecb08980e",
+        "sha256_lf": "01e9c93fa81bc39e5c0b6b75cf739fbeb871748faa4c924dbf6c590ecb08980e",
+        "bytes": 1582,
+        "bytes_lf": 1582,
+        "eol": "lf",
+        "change": "added"
+      }
+    ]
+  },
+  "results": {
+    "recordedOn": "2026-10-07",
+    "environment": {
+      "os": "Windows 11",
+      "node": "24.15.0",
+      "next": "16.2.0",
+      "react": "19.2.0",
+      "browser": "Headless Microsoft Edge driven through the DevTools protocol"
+    },
+    "automated": {
+      "typecheck": {
+        "command": "npm run typecheck",
+        "status": "PASS"
+      },
+      "tests": {
+        "command": "npm test",
+        "status": "PASS",
+        "passed": 48,
+        "failed": 0,
+        "files": {
+          "tests/engine.test.ts": 11,
+          "tests/adapter.test.tsx": 13,
+          "tests/presentation.test.tsx": 4,
+          "tests/react.test.tsx": 2,
+          "tests/ssr.test.tsx": 4,
+          "tests/cookie.test.ts": 14
+        }
+      },
+      "coreContractTest": {
+        "file": "01-runtime/tests/core-contract.test.ts",
+        "status": "PASS",
+        "note": "The original Phase 9 core contract test, bundled with esbuild and run against the modified core. Output: ALL CORE V0.1 CONTRACT TESTS PASSED."
+      },
+      "productionBuild": {
+        "command": "npm run build",
+        "status": "PASS",
+        "note": "/personalized is dynamic; all other routes are prerendered."
+      },
+      "ssrValidation": {
+        "command": "npm run test:ssr",
+        "status": "PASS",
+        "against": "next start (production build), raw HTTP responses",
+        "cases": [
+          {
+            "cookie": "ar-EG.luxury.smooth",
+            "id": "ar-EG::luxury::smooth",
+            "direction": "rtl",
+            "source": "cookie",
+            "pass": true
+          },
+          {
+            "cookie": "en-US.light.instant",
+            "id": "en-US::light::instant",
+            "direction": "ltr",
+            "source": "cookie",
+            "pass": true
+          },
+          {
+            "cookie": "ar-EG.midnight.reduced",
+            "id": "ar-EG::midnight::reduced",
+            "direction": "rtl",
+            "source": "cookie",
+            "pass": true
+          },
+          {
+            "cookie": "fr-FR.neon.fast",
+            "id": "en-US::light::instant",
+            "direction": "ltr",
+            "source": "invalid",
+            "pass": true
+          },
+          {
+            "cookie": null,
+            "id": "en-US::light::instant",
+            "direction": "ltr",
+            "source": "missing",
+            "pass": true
+          }
+        ],
+        "sameRouteDifferentServerOutput": true
+      }
+    },
+    "gates": {
+      "reactAdapter": "PASS",
+      "subscription": "PASS",
+      "pollingRemoved": "PASS",
+      "reactRerender": "PASS",
+      "deltaSemantics": "PASS_WITH_SCOPE",
+      "ssr": "PASS_WITH_SCOPE",
+      "dynamicPerRequestSsr": "PASS_WITH_SCOPE",
+      "rtl": "PASS",
+      "motion": "PASS_WITH_SCOPE",
+      "failureRecovery": "PASS",
+      "rapidTransitions": "PASS",
+      "mobile": "PASS (emulated viewports; no physical devices)",
+      "keyboard": "PASS",
+      "contrast": "PASS (solid surfaces only)",
+      "reducedMotion": "PASS",
+      "typescript": "PASS",
+      "tests": "PASS",
+      "productionBuild": "PASS"
+    },
+    "browserQa": [
+      {
+        "area": "Routes at 1440 px",
+        "checked": "All 7 routes in dark and light Studio interface: no horizontal scroll, no clipped text; screenshots inspected",
+        "result": "PASS"
+      },
+      {
+        "area": "Reference experiences",
+        "checked": "ar-EG/luxury/smooth, en-US/midnight/instant, en-US/luxury/reduced, en-US/light/instant: id, dir, lang, strategy, resolved components, chart direction",
+        "result": "PASS"
+      },
+      {
+        "area": "Studio interface vs. experience",
+        "checked": "Switching the Studio to light left the experience id and its CSS variables unchanged",
+        "result": "PASS"
+      },
+      {
+        "area": "RTL",
+        "checked": "Navigation and brand on the right, account on the left, first table column on the right, totals end-aligned, chart and texture mirrored, Arabic-Indic digits, Arabic heading face",
+        "result": "PASS"
+      },
+      {
+        "area": "Keyboard",
+        "checked": "26 tab stops in order, each with a visible focus ring; Shift+Tab; Enter and Space on presets; arrow keys in a radio group and across inspector tabs; focus kept on the activated control after a transition",
+        "result": "PASS"
+      },
+      {
+        "area": "Mobile 390 px",
+        "checked": "All 7 routes without overflow; controls sheet traps focus for 24 tabs, closes on Escape, returns focus to the opener; inspector sheet fits",
+        "result": "PASS"
+      },
+      {
+        "area": "Tablet 768 px",
+        "checked": "Studio, Playground and Personalized without overflow",
+        "result": "PASS"
+      },
+      {
+        "area": "Reduced motion",
+        "checked": "With the preference emulated: experience remained ar-EG::luxury::smooth, shown strategy css, zero view transitions started; Research mode showed the engine definition (view-transition, 480 ms) and the presentation (css, 140 ms) separately",
+        "result": "PASS"
+      },
+      {
+        "area": "No View Transitions API",
+        "checked": "With the API removed, the Smooth experience still committed and rendered",
+        "result": "PASS"
+      },
+      {
+        "area": "Failure showcase",
+        "checked": "Translation, font, asset and code failures: RESOURCE_LOAD_FAILED, current experience preserved, retry committed",
+        "result": "PASS"
+      },
+      {
+        "area": "Rapid showcase",
+        "checked": "Five un-awaited requests: four stale, one committed, committed experience equals the last request",
+        "result": "PASS"
+      },
+      {
+        "area": "Production console",
+        "checked": "No errors or warnings on any route, including hydration with three different cookies",
+        "result": "PASS"
+      },
+      {
+        "area": "SSR isolation",
+        "checked": "80 concurrent requests with 4 different cookies",
+        "result": "PASS",
+        "detail": "80 of 80 returned their own experience"
+      },
+      {
+        "area": "Long tasks and layout shift",
+        "checked": "Around two Studio transitions on the production build",
+        "result": "OBSERVATION",
+        "detail": "No long tasks reported, CLS 0. One headless run; not a benchmark."
+      }
+    ],
+    "notVerified": [
+      "Screen readers",
+      "Firefox and Safari",
+      "Physical mobile devices",
+      "Appearance of the view transition in motion",
+      "Contrast of text on tinted color-mix() backgrounds"
+    ]
+  },
+  "scopedLimitations": [
+    "Delta semantics (PASS_WITH_SCOPE): the engine's delta still reports component selection as token:component.* keys, because the resolver does not project a theme's components onto the resolved experience. The Studio inspector derives component changes by running the core ComponentResolver on both snapshots.",
+    "Lifecycle: the core reports commits only. Individual protocol stages are not observable live; the inspector's stage animation is a labelled visual replay.",
+    "SSR (PASS_WITH_SCOPE): validated against a local Next.js production server only. Nothing is established for CDN, shared-cache or other deployment topologies.",
+    "Motion (PASS_WITH_SCOPE): all three motions commit correctly, including with the View Transitions API removed. The appearance of the view transition in motion was not verified; verification used still screenshots.",
+    "Contrast: WCAG ratios were computed from colour tokens against solid surfaces. Text on tinted color-mix() backgrounds was not measured.",
+    "Mobile: verified with emulated 390 px and 768 px viewports in headless Edge, not on physical devices.",
+    "Browsers: Chromium-based only (headless Microsoft Edge, and Chrome during Pass 1). Firefox and Safari were not tested. Screen readers were not tested.",
+    "Stored React 18 and Next.js samples (Phase 92) predate the adapter change and were not re-measured.",
+    "The subscription-based adapter is covered by this project's tests on React 19.2 only; it has not been re-run through the Phase 92 React 18.3.1 harness.",
+    "Long-task and layout-shift readings are a single observation from one headless run, not a benchmark.",
+    "Browser QA scripts were run from a scratch directory and are not part of the repository."
+  ],
+  "revisions": [
+    {
+      "at": "2026-10-07T18:56:33.466Z",
+      "files": 108,
+      "note": "Public release preparation: npm workspace at the repository root, package build configuration and npm metadata, root documentation, examples, GitHub files, a case study page and navigation changes in the Studio, and a removed nested lockfile. No file under 01-runtime/packages/*/src changed. The recorded results and browser QA in this manifest are from Pass 2 and were not repeated, except typecheck, tests, build and SSR validation, which were re-run and pass."
+    },
+    {
+      "at": "2026-10-07T18:56:57.510Z",
+      "files": 108,
+      "note": "Corrected the count of differing Phase 37 entries in RESEARCH.md."
+    }
+  ]
+}

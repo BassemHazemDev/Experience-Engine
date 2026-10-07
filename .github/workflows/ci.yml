@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      # Installs every workspace and builds the two packages (root "prepare" script).
+      - run: npm ci
+
+      - run: npm run typecheck
+
+      - run: npm test
+
+      # Packages, Studio and all examples.
+      - run: npm run build
+
+      - name: SSR validation against the built Studio
+        run: |
+          npm run start &
+          for i in $(seq 1 30); do
+            curl -sf http://localhost:3000/ > /dev/null && break
+            sleep 1
+          done
+          npm run test:ssr
+
+      - name: Package contents
+        run: npm run pack:check

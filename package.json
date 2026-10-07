@@ -1,0 +1,42 @@
+{
+  "name": "experience-engine",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Framework-agnostic runtime for multi-dimensional UI experience transitions, with its React adapter, showcase and research record.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BassemHazemDev/Experience-Engine.git"
+  },
+  "workspaces": [
+    "01-runtime/packages/core",
+    "01-runtime/packages/react",
+    "06-project",
+    "examples/*"
+  ],
+  "scripts": {
+    "prepare": "npm run build:packages",
+    "build:packages": "npm run build -w @experience-engine/core && npm run build -w @experience-engine/react",
+    "build": "npm run build --workspaces --if-present",
+    "typecheck": "npm run build:packages && npm run typecheck --workspaces --if-present && tsc -p 01-runtime --noEmit",
+    "test": "npm run build:packages && npm run test:contract && npm test -w experience-engine-studio",
+    "test:contract": "tsx 01-runtime/tests/core-contract.test.ts",
+    "test:ssr": "npm run test:ssr -w experience-engine-studio",
+    "dev": "npm run build:packages && npm run dev -w experience-engine-studio",
+    "start": "npm run start -w experience-engine-studio",
+    "pack:check": "npm pack --dry-run -w @experience-engine/core -w @experience-engine/react",
+    "verify:manifest": "node 01-runtime/scripts/verify-manifest-pass2.mjs"
+  },
+  "devDependencies": {
+    "tsup": "^8.3.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.8.0"
+  },
+  "overrides": {
+    "react": "19.2.0",
+    "react-dom": "19.2.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

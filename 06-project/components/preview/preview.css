@@ -1,0 +1,745 @@
+/* Nova Commerce preview. Every colour, radius and spacing value below comes
+   from --xp-* variables written from the resolved experience. Layout uses
+   logical properties, so direction is handled by `dir` alone. */
+
+.xp-root {
+  --u: var(--xp-space, 16px);
+  container-type: inline-size;
+  view-transition-name: xp-preview;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  background: var(--xp-surface);
+  color: var(--xp-text);
+  font-family: var(--xp-font-body), system-ui, sans-serif;
+  font-size: 14px;
+  line-height: var(--xp-line-height, 1.5);
+  letter-spacing: var(--xp-letter-spacing, 0);
+  text-align: start;
+}
+
+.xp-root,
+.xp-root * {
+  box-sizing: border-box;
+}
+
+.xp-root[data-strategy="css"],
+.xp-root[data-strategy="css"] * {
+  transition:
+    background-color var(--xp-ms) var(--xp-ease),
+    color var(--xp-ms) var(--xp-ease),
+    border-color var(--xp-ms) var(--xp-ease);
+}
+
+.xp-root h2,
+.xp-root h3,
+.xp-root p,
+.xp-root ul,
+.xp-root ol {
+  margin: 0;
+  padding: 0;
+}
+
+.xp-root ul,
+.xp-root ol {
+  list-style: none;
+}
+
+.xp-root a {
+  color: var(--xp-accent);
+  text-decoration: none;
+}
+
+.xp-root a:hover {
+  text-decoration: underline;
+}
+
+.xp-root :focus-visible {
+  outline: 2px solid var(--xp-accent);
+  outline-offset: 2px;
+}
+
+.xp-muted {
+  color: var(--xp-muted);
+}
+
+.xp-num {
+  font-variant-numeric: tabular-nums;
+  text-align: end;
+}
+
+.xp-code {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.92em;
+}
+
+/* Top bar */
+
+.xp-topbar {
+  display: flex;
+  align-items: center;
+  gap: var(--u);
+  padding: calc(var(--u) * 0.6) var(--u);
+  background: var(--xp-sidebar);
+  border-block-end: 1px solid var(--xp-border);
+}
+
+.xp-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--xp-font-display), var(--xp-font-body), sans-serif;
+  font-weight: var(--xp-heading-weight);
+  font-size: 15px;
+  white-space: nowrap;
+}
+
+.xp-brand-mark {
+  inline-size: 18px;
+  block-size: 18px;
+  border-radius: calc(var(--xp-radius-control) * 0.75);
+  background: var(--xp-accent);
+  box-shadow: inset -6px -6px 0 color-mix(in srgb, var(--xp-accentText) 30%, transparent);
+}
+
+.xp-search {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  max-inline-size: 320px;
+  padding: 6px 10px;
+  border: 1px solid var(--xp-border);
+  border-radius: var(--xp-radius-control);
+  background: var(--xp-raised);
+  color: var(--xp-muted);
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.xp-topbar-end {
+  margin-inline-start: auto;
+  display: flex;
+  align-items: center;
+  gap: calc(var(--u) * 0.75);
+}
+
+.xp-icon-button {
+  position: relative;
+  display: grid;
+  place-items: center;
+  inline-size: 32px;
+  block-size: 32px;
+  border: 1px solid var(--xp-border);
+  border-radius: var(--xp-radius-control);
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.xp-badge {
+  position: absolute;
+  inset-block-start: -6px;
+  inset-inline-end: -6px;
+  min-inline-size: 17px;
+  padding: 0 4px;
+  border-radius: 9px;
+  background: var(--xp-negative);
+  color: var(--xp-surface);
+  font-size: 10.5px;
+  font-weight: 600;
+  line-height: 17px;
+  text-align: center;
+}
+
+.xp-account {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.xp-avatar {
+  display: grid;
+  place-items: center;
+  inline-size: 30px;
+  block-size: 30px;
+  border-radius: 50%;
+  background: var(--xp-accentSoft);
+  color: var(--xp-accent);
+  font-weight: 600;
+}
+
+.xp-account-text {
+  display: flex;
+  flex-direction: column;
+  font-size: 12.5px;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+.xp-account-text .xp-muted {
+  font-size: 11.5px;
+}
+
+/* Body + navigation */
+
+.xp-body {
+  flex: 1;
+  display: flex;
+  min-block-size: 0;
+}
+
+.xp-nav {
+  flex: none;
+  padding: var(--u) calc(var(--u) * 0.6);
+  background: var(--xp-sidebar);
+  border-inline-end: 1px solid var(--xp-border);
+}
+
+.xp-nav[data-variant="rail"] {
+  inline-size: 176px;
+}
+
+.xp-nav ul {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.xp-nav a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: calc(var(--u) * 0.42) 10px;
+  border-radius: var(--xp-radius-control);
+  color: var(--xp-muted);
+  font-size: 13.5px;
+}
+
+.xp-nav a:hover {
+  background: var(--xp-raised);
+  color: var(--xp-text);
+  text-decoration: none;
+}
+
+.xp-nav a[aria-current="page"] {
+  background: var(--xp-accentSoft);
+  color: var(--xp-accent);
+  font-weight: 600;
+}
+
+.xp-nav[data-variant="compact"] a {
+  justify-content: center;
+  inline-size: 34px;
+  block-size: 34px;
+  padding: 0;
+}
+
+.xp-main {
+  flex: 1;
+  min-inline-size: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--u);
+  padding: calc(var(--u) * 1.25);
+}
+
+/* Hero */
+
+.xp-hero {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: var(--u);
+  padding: calc(var(--u) * 1.4);
+  border: 1px solid var(--xp-border);
+  border-radius: var(--xp-radius);
+  background: var(--xp-card);
+  box-shadow: var(--xp-shadow);
+}
+
+/* The texture is prepared by the engine as an asset resource. It sits at the
+   inline end, so it mirrors with the direction. */
+.xp-hero::before {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  inset-inline: 42% 0;
+  background: var(--xp-texture) right center / cover no-repeat;
+  pointer-events: none;
+}
+
+.xp-root[dir="rtl"] .xp-hero::before {
+  transform: scaleX(-1);
+}
+
+.xp-hero > * {
+  position: relative;
+}
+
+.xp-hero h2 {
+  font-family: var(--xp-font-display), var(--xp-font-body), sans-serif;
+  font-size: clamp(20px, 3.6cqi, 30px);
+  font-weight: var(--xp-heading-weight);
+  letter-spacing: var(--xp-heading-tracking);
+  line-height: 1.25;
+}
+
+.xp-hero p {
+  margin-block-start: 6px;
+  max-inline-size: 46ch;
+  color: var(--xp-muted);
+}
+
+.xp-hero-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.xp-button {
+  padding: calc(var(--u) * 0.45) calc(var(--u) * 0.9);
+  border: 1px solid var(--xp-button-border);
+  border-radius: var(--xp-radius-control);
+  background: var(--xp-button-bg);
+  color: var(--xp-button-text);
+  font: inherit;
+  font-weight: 600;
+  font-size: 13.5px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.xp-button:hover {
+  filter: brightness(1.08);
+}
+
+.xp-button-quiet {
+  border-color: var(--xp-border);
+  background: transparent;
+  color: var(--xp-text);
+}
+
+/* Cards */
+
+.xp-card {
+  border: 1px solid var(--xp-border);
+  border-radius: var(--xp-radius);
+  background: var(--xp-card);
+  box-shadow: var(--xp-shadow);
+}
+
+.xp-card-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: calc(var(--u) * 0.85) var(--u) calc(var(--u) * 0.5);
+  font-size: 12.5px;
+}
+
+.xp-card-head h3 {
+  font-family: var(--xp-font-display), var(--xp-font-body), sans-serif;
+  font-size: 15px;
+  font-weight: var(--xp-heading-weight);
+  letter-spacing: var(--xp-heading-tracking);
+}
+
+.xp-kpis {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--u);
+}
+
+.xp-kpi {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: var(--u);
+}
+
+.xp-label {
+  color: var(--xp-muted);
+  font-size: 12.5px;
+}
+
+.xp-kpi strong {
+  font-family: var(--xp-font-display), var(--xp-font-body), sans-serif;
+  font-size: clamp(18px, 2.8cqi, 24px);
+  font-weight: var(--xp-heading-weight);
+  letter-spacing: var(--xp-heading-tracking);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+}
+
+.xp-trend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.xp-trend > span:first-child {
+  font-size: 9px;
+}
+
+.xp-trend .xp-muted {
+  font-weight: 400;
+}
+
+.xp-trend[data-direction="up"] {
+  color: var(--xp-positive);
+}
+
+.xp-trend[data-direction="down"] {
+  color: var(--xp-negative);
+}
+
+.xp-columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+  gap: var(--u);
+}
+
+/* Chart */
+
+.xp-chart-plot {
+  display: block;
+  inline-size: 100%;
+  block-size: 150px;
+  padding-inline: var(--u);
+  overflow: visible;
+}
+
+.xp-root[dir="rtl"] .xp-chart-plot {
+  transform: scaleX(-1);
+}
+
+.xp-chart-grid {
+  stroke: var(--xp-border);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.xp-chart-line {
+  fill: none;
+  stroke: var(--xp-accent);
+  stroke-width: 2;
+  stroke-linejoin: round;
+}
+
+.xp-chart-area {
+  fill: var(--xp-accentSoft);
+}
+
+.xp-chart-dot {
+  fill: var(--xp-card);
+  stroke: var(--xp-accent);
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+}
+
+.xp-chart-axis {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px var(--u) calc(var(--u) * 0.75);
+  font-size: 11.5px;
+}
+
+/* Activity */
+
+.xp-activity ol {
+  padding: 0 var(--u) calc(var(--u) * 0.6);
+}
+
+.xp-activity li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 10px;
+  padding-block: calc(var(--u) * 0.4);
+  border-block-start: 1px solid var(--xp-border);
+  font-size: 13px;
+}
+
+.xp-activity li:first-child {
+  border-block-start: 0;
+}
+
+.xp-activity-mark {
+  inline-size: 7px;
+  block-size: 7px;
+  margin-block-start: 0.55em;
+  border-radius: 50%;
+  background: var(--xp-accent);
+}
+
+.xp-activity time {
+  grid-column: 2;
+  font-size: 11.5px;
+}
+
+/* Orders table */
+
+.xp-table {
+  inline-size: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.xp-table th {
+  padding: calc(var(--u) * 0.4) var(--u);
+  border-block: 1px solid var(--xp-border);
+  background: var(--xp-raised);
+  color: var(--xp-muted);
+  font-size: 12px;
+  font-weight: 500;
+  text-align: start;
+}
+
+.xp-table th.xp-num {
+  text-align: end;
+}
+
+.xp-table td {
+  padding: calc(var(--u) * 0.55) var(--u);
+  border-block-end: 1px solid var(--xp-border);
+  white-space: nowrap;
+}
+
+.xp-table tr:last-child td {
+  border-block-end: 0;
+}
+
+.xp-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 1px 8px;
+  border: 1px solid currentColor;
+  border-radius: calc(var(--xp-radius-control) * 2);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+/* Status is carried by the label and the mark's shape, not colour alone. */
+.xp-status-mark {
+  inline-size: 7px;
+  block-size: 7px;
+  background: currentColor;
+}
+
+.xp-status[data-status="paid"] {
+  color: var(--xp-positive);
+}
+
+.xp-status[data-status="paid"] .xp-status-mark {
+  border-radius: 50%;
+}
+
+.xp-status[data-status="pending"] {
+  color: var(--xp-warning);
+}
+
+.xp-status[data-status="pending"] .xp-status-mark {
+  border-radius: 50%;
+  background: transparent;
+  border: 1.5px solid currentColor;
+}
+
+.xp-status[data-status="shipped"] {
+  color: var(--xp-accent);
+}
+
+.xp-status[data-status="refunded"] {
+  color: var(--xp-negative);
+}
+
+.xp-status[data-status="refunded"] .xp-status-mark {
+  transform: rotate(45deg);
+}
+
+/* Orders list (replacement) */
+
+.xp-orders-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: calc(var(--u) * 0.6) var(--u);
+  border-block-start: 1px solid var(--xp-border);
+  font-size: 13px;
+}
+
+.xp-orders-list-name {
+  display: block;
+  font-weight: 600;
+}
+
+.xp-orders-list-meta {
+  display: flex;
+  gap: 8px;
+  color: var(--xp-muted);
+  font-size: 12px;
+}
+
+.xp-orders-list-end {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.xp-orders-fallback {
+  block-size: 180px;
+}
+
+.xp-columns-wide {
+  grid-template-columns: minmax(0, 2.2fr) minmax(0, 1fr);
+}
+
+/* Store status */
+
+.xp-system ul {
+  padding: 0 var(--u);
+}
+
+.xp-system li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-block: calc(var(--u) * 0.35);
+  font-size: 13px;
+}
+
+.xp-system li > span {
+  display: grid;
+  place-items: center;
+  inline-size: 16px;
+  block-size: 16px;
+  border-radius: 50%;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--xp-card);
+}
+
+.xp-system li[data-level="ok"] > span {
+  background: var(--xp-positive);
+}
+
+.xp-system li[data-level="warn"] > span {
+  background: var(--xp-warning);
+}
+
+.xp-demo-note {
+  margin: calc(var(--u) * 0.6) var(--u) var(--u) !important;
+  padding-block-start: calc(var(--u) * 0.5);
+  border-block-start: 1px dashed var(--xp-border);
+  color: var(--xp-muted);
+  font-size: 11.5px;
+}
+
+/* The preview adapts to the pane it sits in, not the window. */
+
+@container (max-width: 860px) {
+  .xp-kpis {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .xp-columns,
+  .xp-columns-wide {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .xp-account-text {
+    display: none;
+  }
+}
+
+@container (max-width: 640px) {
+  .xp-nav[data-variant="rail"] {
+    inline-size: auto;
+  }
+
+  .xp-nav[data-variant="rail"] a span {
+    display: none;
+  }
+
+  .xp-search {
+    display: none;
+  }
+
+  .xp-main {
+    padding: var(--u);
+  }
+
+  .xp-table th:nth-child(3),
+  .xp-table td:nth-child(3) {
+    display: none;
+  }
+
+  .xp-table th,
+  .xp-table td {
+    padding-inline: calc(var(--u) * 0.6);
+  }
+}
+
+@container (max-width: 420px) {
+  .xp-nav {
+    display: none;
+  }
+
+  .xp-table th:nth-child(1),
+  .xp-table td:nth-child(1) {
+    display: none;
+  }
+}
+
+/* View transition for the "view-transition" motion strategy. Only the preview
+   animates; the rest of the page updates in place. */
+
+::view-transition-old(root) {
+  animation: none;
+  opacity: 0;
+}
+
+::view-transition-new(root) {
+  animation: none;
+}
+
+::view-transition-group(xp-preview) {
+  animation-duration: var(--xp-vt-ms, 300ms);
+  animation-timing-function: var(--xp-vt-ease, ease);
+}
+
+::view-transition-old(xp-preview) {
+  animation: xp-leave var(--xp-vt-ms, 300ms) var(--xp-vt-ease, ease) both;
+}
+
+::view-transition-new(xp-preview) {
+  animation: xp-enter var(--xp-vt-ms, 300ms) var(--xp-vt-ease, ease) both;
+}
+
+@keyframes xp-leave {
+  to {
+    opacity: 0;
+    filter: blur(6px);
+    transform: scale(0.985);
+  }
+}
+
+@keyframes xp-enter {
+  from {
+    opacity: 0;
+    filter: blur(6px);
+    transform: scale(1.015);
+  }
+}
+
+/* The texture is a backdrop; keep it behind the copy, never competing with it. */
+.xp-hero::before {
+  opacity: 0.55;
+}
