@@ -1,6 +1,6 @@
 # LinkedIn launch draft
 
-A draft only. Nothing has been posted. Replace the bracketed placeholders before publishing, and remove the npm line if the packages are not published yet.
+A draft for public release. Replace the bracketed placeholders before posting.
 
 ---
 
@@ -42,8 +42,8 @@ I want to be straightforward about this. It's version 0.1.0 and experimental; I 
 If you work on design systems, localization, or multi-brand products, I'd like to hear where this matches your experience and where it doesn't.
 
 GitHub: https://github.com/BassemHazemDev/Experience-Engine
-Studio: [LIVE DEMO URL — add after deployment]
-npm: [`@experience-engine/core`, `@experience-engine/react` — add after publishing]
+Studio: https://studio.bassemhazem.com
+npm: https://www.npmjs.com/package/@experience-engine/core | https://www.npmjs.com/package/@experience-engine/react
 
 #frontend #react #nextjs #designsystems #i18n #opensource
 

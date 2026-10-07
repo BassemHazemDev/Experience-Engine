@@ -7,14 +7,14 @@
 
 ## Install
 
-The packages are not on npm yet. Once published:
+The packages are publicly published on npm:
 
 ```bash
 npm install @experience-engine/core
-npm install @experience-engine/react   # optional
+npm install @experience-engine/react   # optional: for React or Next.js
 ```
 
-Until then, work inside this repository: `npm install` at the root builds both packages and links them into the Studio and the examples.
+You can also run them locally from the workspace repository ([https://github.com/BassemHazemDev/Experience-Engine](https://github.com/BassemHazemDev/Experience-Engine)): `npm install` at the root builds both packages and links them into the Studio and the examples.
 
 ## 1. Define cultures
 

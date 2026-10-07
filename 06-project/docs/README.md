@@ -2,6 +2,12 @@
 
 Experience Engine Studio is a Next.js application that demonstrates the Experience Engine research runtime. A fictional storefront admin, Nova Commerce, changes its language, reading direction, visual system and motion by sending one request to the engine. The Studio then shows what the engine did with that request: the typed delta, the dependency closure, the resources it prepared and how it committed.
 
+- **Live Showcase**: [https://studio.bassemhazem.com](https://studio.bassemhazem.com)
+- **Canonical Repository**: [https://github.com/BassemHazemDev/Experience-Engine](https://github.com/BassemHazemDev/Experience-Engine)
+- **Published npm Packages**: [`@experience-engine/core`](https://www.npmjs.com/package/@experience-engine/core) and [`@experience-engine/react`](https://www.npmjs.com/package/@experience-engine/react)
+
+> **Note**: The Studio is the live showcase application, not an npm package. The published runtime packages are `@experience-engine/core` and `@experience-engine/react`.
+
 The application uses the real packages in `01-runtime/packages` (`@experience-engine/core` and `@experience-engine/react`). Neither is wrapped in a substitute or reimplemented. Pass 2 made one addition to them: a commit subscription in the core, which the React adapter now uses instead of polling. See [Limitations](./limitations.md), items 4, 5 and 21.
 
 ## Contents

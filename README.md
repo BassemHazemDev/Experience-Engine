@@ -1,9 +1,21 @@
 # Experience Engine
 
 [![CI](https://github.com/BassemHazemDev/Experience-Engine/actions/workflows/ci.yml/badge.svg)](https://github.com/BassemHazemDev/Experience-Engine/actions/workflows/ci.yml)
+[![npm core](https://img.shields.io/npm/v/@experience-engine/core.svg)](https://www.npmjs.com/package/@experience-engine/core)
+[![npm react](https://img.shields.io/npm/v/@experience-engine/react.svg)](https://www.npmjs.com/package/@experience-engine/react)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 
 A framework-agnostic runtime that changes an application's culture, theme and motion together, as one prepared and guarded transition.
+
+## Live Project
+
+- **Studio Showcase**: <https://studio.bassemhazem.com>
+- **GitHub Repository**: <https://github.com/BassemHazemDev/Experience-Engine>
+- **npm Packages**:
+  - [`@experience-engine/core`](https://www.npmjs.com/package/@experience-engine/core) (v0.1.0)
+  - [`@experience-engine/react`](https://www.npmjs.com/package/@experience-engine/react) (v0.1.0)
+
+The Studio is the live public showcase application. The runtime packages are publicly published on the npm registry. The GitHub repository is the canonical source repository for the project.
 
 ```ts
 await engine.setExperience({
@@ -15,7 +27,7 @@ await engine.setExperience({
 
 One call. The engine works out what changed, loads what the new experience needs (translations, fonts, assets, code), and only then makes it visible. If something fails to load, or a newer request arrives first, the screen keeps showing the experience it already had.
 
-**Status: experimental.** Version 0.1.0 is an early research implementation. The API may change, and it has not been used in production. See [Limitations](#limitations).
+**Status: Public release (0.1.0).** An early research implementation published on npm and live on the web. The API is experimental and subject to change; it has not been tested in high-volume production. See [Limitations](#limitations).
 
 ## Why Experience Engine?
 
@@ -119,21 +131,21 @@ function Page() {
 
 ## Installation
 
-The packages are prepared for npm but **not published yet**. Once they are:
+The packages are publicly published on npm:
 
 ```bash
 npm install @experience-engine/core
 npm install @experience-engine/react   # for React or Next.js
 ```
 
-Until then, use them from this repository (see [Run it locally](#run-it-locally)).
+You can also run and build them locally from this repository (see [Run it locally](#run-it-locally)).
 
 ## Packages
 
-| Package | Version | What it is |
-|---|---|---|
-| [`@experience-engine/core`](./01-runtime/packages/core) | 0.1.0 | The runtime: engine, resolver, typed delta, dependency closure, resource manager, component resolver. No dependencies, no framework. |
-| [`@experience-engine/react`](./01-runtime/packages/react) | 0.1.0 | `ExperienceProvider` and hooks, built on `useSyncExternalStore`. Peer dependency: React 18 or newer. |
+| Package | Version | Registry | What it is |
+|---|---|---|---|
+| [`@experience-engine/core`](./01-runtime/packages/core) | 0.1.0 | [npm](https://www.npmjs.com/package/@experience-engine/core) | The runtime: engine, resolver, typed delta, dependency closure, resource manager, component resolver. No dependencies, no framework. |
+| [`@experience-engine/react`](./01-runtime/packages/react) | 0.1.0 | [npm](https://www.npmjs.com/package/@experience-engine/react) | `ExperienceProvider` and hooks, built on `useSyncExternalStore`. Peer dependency: React 18 or newer. |
 
 There is no separate Next.js package. Next.js is supported by using the core in Server Components and the React adapter on the client; see [docs/ssr.md](./docs/ssr.md).
 
@@ -141,12 +153,16 @@ There is no separate Next.js package. Next.js is supported by using the core in 
 
 [`06-project`](./06-project) is Experience Engine Studio, a Next.js application built on the two packages. It previews a fictional storefront admin and takes each transition apart: the typed delta, the dependency graph, every resource, and the commit. It also has a playground for rapid switching and failure recovery, and a cookie-driven personalized SSR page.
 
+The Studio is live at **<https://studio.bassemhazem.com>**.
+
+To run it locally:
+
 ```bash
 npm install
 npm run dev        # http://localhost:3000
 ```
 
-There is no hosted demo yet. Deployment notes are in [06-project/docs/deployment.md](./06-project/docs/deployment.md).
+Deployment notes and hosting configurations are documented in [06-project/docs/deployment.md](./06-project/docs/deployment.md).
 
 ## Run it locally
 
@@ -198,6 +214,7 @@ npm run dev -w example-basic-react
 | [Resources and motion](./docs/resources-and-motion.md) | Loading, caching, preload, transitions, reduced motion |
 | [API reference](./docs/api.md) | Everything the two packages export |
 | [Troubleshooting](./docs/troubleshooting.md) | Common problems |
+| [Provenance & Authorship](./docs/provenance.md) | Project origin, author, published packages, live showcase and provenance chain |
 
 ## Repository layout
 
@@ -242,6 +259,27 @@ The research conclusions are deliberately narrow, and this README does not go be
 - **Two cultures in the demos.** `en-US` and `ar-EG`.
 
 More detail: [06-project/docs/limitations.md](./06-project/docs/limitations.md).
+
+## Public Release
+
+- **GitHub repository**: Public (<https://github.com/BassemHazemDev/Experience-Engine>)
+- **npm packages**: Published
+  - [`@experience-engine/core@0.1.0`](https://www.npmjs.com/package/@experience-engine/core)
+  - [`@experience-engine/react@0.1.0`](https://www.npmjs.com/package/@experience-engine/react)
+- **Live Studio**: <https://studio.bassemhazem.com>
+- **License**: MIT
+- **Provenance record**: [docs/provenance.md](./docs/provenance.md)
+
+## Author & Provenance
+
+Experience Engine is an original software project developed and maintained by **Bassem Hazem**.
+
+- **Canonical repository**: <https://github.com/BassemHazemDev/Experience-Engine>
+- **Published packages**: [`@experience-engine/core`](https://www.npmjs.com/package/@experience-engine/core) and [`@experience-engine/react`](https://www.npmjs.com/package/@experience-engine/react)
+- **Live showcase**: <https://studio.bassemhazem.com>
+- **Public provenance document**: [docs/provenance.md](./docs/provenance.md)
+
+The repository contains the implementation, examples, documentation, testing records, and research/evaluation history associated with the project.
 
 ## Contributing
 

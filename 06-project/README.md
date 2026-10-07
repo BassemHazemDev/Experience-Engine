@@ -2,6 +2,12 @@
 
 A showcase application for the Experience Engine research runtime. One fictional application (Nova Commerce) changes language, direction, visual system and motion by sending a single request to the engine, and the Studio takes each transition apart: typed delta, dependency closure, resources, guarded commit.
 
+- **Live Showcase**: [https://studio.bassemhazem.com](https://studio.bassemhazem.com)
+- **Repository Source**: [https://github.com/BassemHazemDev/Experience-Engine](https://github.com/BassemHazemDev/Experience-Engine)
+- **Published Runtime Packages**: [`@experience-engine/core`](https://www.npmjs.com/package/@experience-engine/core) and [`@experience-engine/react`](https://www.npmjs.com/package/@experience-engine/react) on npm
+
+> **Note**: Experience Engine Studio is the live public showcase application workspace (`06-project`), not a standalone npm package. The published runtime packages are `@experience-engine/core` and `@experience-engine/react`.
+
 It uses the real packages in `../01-runtime/packages` (`@experience-engine/core`, `@experience-engine/react`). Neither is reimplemented here. Studio documentation is in [`docs/`](./docs/README.md); documentation for the packages themselves is in the repository's [`docs/`](../docs).
 
 ## Setup
@@ -18,7 +24,7 @@ npm run dev          # http://localhost:3000
 
 The commands below can be run from the repository root or from `06-project`. After changing an engine package, run `npm run build:packages` at the root.
 
-Deployment notes: [`docs/deployment.md`](./docs/deployment.md).
+Deployment notes: [`docs/deployment.md`](./docs/deployment.md) (Live: [https://studio.bassemhazem.com](https://studio.bassemhazem.com)).
 
 ## Production build
 
