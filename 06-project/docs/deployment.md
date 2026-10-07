@@ -1,6 +1,12 @@
 # Deployment
 
-The Studio is a standard Next.js App Router application. It has not been deployed publicly yet: everything below about hosting is preparation, and only the local steps have been run.
+The Studio is a standard Next.js App Router application deployed publicly as the live showcase at **<https://studio.bassemhazem.com>**.
+
+- **Live Showcase**: [https://studio.bassemhazem.com](https://studio.bassemhazem.com)
+- **Canonical Repository**: [https://github.com/BassemHazemDev/Experience-Engine](https://github.com/BassemHazemDev/Experience-Engine)
+- **Published Runtime Packages**: [`@experience-engine/core`](https://www.npmjs.com/package/@experience-engine/core) and [`@experience-engine/react`](https://www.npmjs.com/package/@experience-engine/react) on npm
+
+> **Note**: Experience Engine Studio is the live showcase application, not a published npm package. The published packages are `@experience-engine/core` and `@experience-engine/react`.
 
 ## Local development
 
@@ -43,24 +49,19 @@ The only variable in the repository is `BASE_URL`, read by `scripts/validate-ssr
 
 ## Vercel
 
-Not tested. The settings that follow from the repository layout:
+The Studio is deployed on Vercel at **<https://studio.bassemhazem.com>**. The configuration:
 
 | Setting | Value |
 |---|---|
-| Root Directory | `06-project` |
+| Root Directory | Repository root (or `06-project`) |
 | Framework preset | Next.js |
-| Include files outside the Root Directory | Enabled, so the engine packages and the root lockfile are available |
-| Install command | default (`npm install`). Run inside a workspace member, npm installs the whole workspace and runs the root `prepare` script, which builds the engine packages |
-| Build command | default (`next build`) |
+| Build command | `npm run build:vercel` (builds core & react packages first, then builds Studio) |
+| Output Directory | default |
 | Node.js version | 20 or newer |
 
-If the build cannot find `@experience-engine/core`, the packages were not built. Set the build command to:
+The build command `npm run build:vercel` runs `npm run build:packages && npm run build -w experience-engine-studio`, ensuring the runtime packages are compiled by `tsup` before the Next.js production build runs.
 
-```bash
-npm run build:packages --prefix .. && next build
-```
-
-No `vercel.json` is included; none is needed for these settings.
+No `vercel.json` is required for this setup.
 
 ## Other hosts
 
@@ -91,11 +92,11 @@ A banner or consent notice may be required for this cookie depending on where yo
 | Local production build and `next start` | Verified |
 | Per-request rendering with five cookie cases on the local server | Verified (`npm run test:ssr`) |
 | 80 concurrent local requests with four cookies, no cross-request leakage | Verified once during development |
-| Deployment to Vercel or any other host | Not done |
+| Deployment to Vercel (studio.bassemhazem.com) | Live and verified |
 | Behaviour behind a CDN, edge runtime or shared cache | Not tested |
 
 ## After deploying
 
 - Open `/personalized`, save a preference, reload, and view the page source: the HTML should already be in the chosen language and direction.
-- Run the validation script against the deployment: `BASE_URL=https://your-domain npm run test:ssr`.
-- Add the URL to the root `README.md` and to the `homepage` field of the two packages.
+- Run the validation script against the deployment: `BASE_URL=https://studio.bassemhazem.com npm run test:ssr`.
+- The live URL is documented in the root `README.md` and related docs.

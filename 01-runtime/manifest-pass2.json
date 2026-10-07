@@ -2,7 +2,7 @@
   "manifest": "pass-2",
   "title": "Experience Engine Studio — Pass 2: technical hardening and showcase QA",
   "createdAt": "2026-10-07T13:32:36.856Z",
-  "updatedAt": "2026-10-07T21:17:09.314Z",
+  "updatedAt": "2026-10-07T21:42:19.781Z",
   "revisionNote": "First recorded with 30 files and committed as 2f7cb20. Updated afterwards to add the verifier script and two documentation notes that point to it. No engine, adapter, application or test file changed in this update.",
   "supersedes": null,
   "basedOn": {
@@ -72,9 +72,9 @@
     "adapterChange": "The React adapter store no longer polls. It holds one engine subscription, updates its snapshot only on commit (and once when the first subscriber attaches), and exposes a pure getSnapshot plus getServerSnapshot."
   },
   "changedFiles": {
-    "count": 108,
+    "count": 109,
     "modified": 32,
-    "added": 75,
+    "added": 76,
     "deleted": 1,
     "files": [
       {
@@ -133,10 +133,10 @@
       },
       {
         "path": "01-runtime/packages/core/README.md",
-        "sha256": "ebd114f193ac7ec0483749bc65ee7ff8fd7e21da6d314a9f231a1cae2e40f28b",
-        "sha256_lf": "ebd114f193ac7ec0483749bc65ee7ff8fd7e21da6d314a9f231a1cae2e40f28b",
-        "bytes": 1710,
-        "bytes_lf": 1710,
+        "sha256": "aa978c9d589c44a64386461b5bb16212753d54bb297b8810a7dc3d6b1b7bb9ca",
+        "sha256_lf": "aa978c9d589c44a64386461b5bb16212753d54bb297b8810a7dc3d6b1b7bb9ca",
+        "bytes": 2905,
+        "bytes_lf": 2905,
         "eol": "lf",
         "change": "added"
       },
@@ -196,10 +196,10 @@
       },
       {
         "path": "01-runtime/packages/react/README.md",
-        "sha256": "92e19b1ff8fdf779fec64123b1c098375c9c362ba94b95b7cbed1b3553ffc3b7",
-        "sha256_lf": "92e19b1ff8fdf779fec64123b1c098375c9c362ba94b95b7cbed1b3553ffc3b7",
-        "bytes": 1779,
-        "bytes_lf": 1779,
+        "sha256": "06e5ff38fa7a4149f4ce27566196a85454d586fecd7194d914e27c838f64c392",
+        "sha256_lf": "06e5ff38fa7a4149f4ce27566196a85454d586fecd7194d914e27c838f64c392",
+        "bytes": 3044,
+        "bytes_lf": 3044,
         "eol": "lf",
         "change": "added"
       },
@@ -268,10 +268,10 @@
       },
       {
         "path": "06-project/README.md",
-        "sha256": "8fe17d36b926f320e0cf575bca121c612552ade56655e7a77fbee83feaecb693",
-        "sha256_lf": "8fe17d36b926f320e0cf575bca121c612552ade56655e7a77fbee83feaecb693",
-        "bytes": 7281,
-        "bytes_lf": 7281,
+        "sha256": "eb726eb029ee46b8d76ad14964bc9673e04f5aa3945d776d283694d4a8ffc6a0",
+        "sha256_lf": "eb726eb029ee46b8d76ad14964bc9673e04f5aa3945d776d283694d4a8ffc6a0",
+        "bytes": 8013,
+        "bytes_lf": 8013,
         "eol": "lf",
         "change": "modified"
       },
@@ -376,10 +376,10 @@
       },
       {
         "path": "06-project/docs/README.md",
-        "sha256": "c468c007051884b90d5aa070830711516925a29ed76b751a67b3794bfad81bb8",
-        "sha256_lf": "c468c007051884b90d5aa070830711516925a29ed76b751a67b3794bfad81bb8",
-        "bytes": 3507,
-        "bytes_lf": 3507,
+        "sha256": "696eab13412f18627a3ef61b88abaf39e4732556b29a7d448e2afb60269855b9",
+        "sha256_lf": "696eab13412f18627a3ef61b88abaf39e4732556b29a7d448e2afb60269855b9",
+        "bytes": 4102,
+        "bytes_lf": 4102,
         "eol": "lf",
         "change": "modified"
       },
@@ -394,10 +394,10 @@
       },
       {
         "path": "06-project/docs/deployment.md",
-        "sha256": "d0daa3c1a8ac52c4fbb797c77b1ca07ce85100437e33f8be4f2fc0070e99bf11",
-        "sha256_lf": "d0daa3c1a8ac52c4fbb797c77b1ca07ce85100437e33f8be4f2fc0070e99bf11",
-        "bytes": 4401,
-        "bytes_lf": 4401,
+        "sha256": "ee601176d2824825a56b5a76921f9eb35e930ed3a1707b99c085d66d6ebd57a2",
+        "sha256_lf": "ee601176d2824825a56b5a76921f9eb35e930ed3a1707b99c085d66d6ebd57a2",
+        "bytes": 4851,
+        "bytes_lf": 4851,
         "eol": "lf",
         "change": "added"
       },
@@ -421,10 +421,10 @@
       },
       {
         "path": "06-project/docs/linkedin-launch.md",
-        "sha256": "1c6ed33b3093561393b890881c94a36b9eeefe8596a935631a539c282cbcf046",
-        "sha256_lf": "1c6ed33b3093561393b890881c94a36b9eeefe8596a935631a539c282cbcf046",
-        "bytes": 4094,
-        "bytes_lf": 4094,
+        "sha256": "8a89a70453408f92968af5559e11cde36d2914d1048f85826ca1f68b8cb7d640",
+        "sha256_lf": "8a89a70453408f92968af5559e11cde36d2914d1048f85826ca1f68b8cb7d640",
+        "bytes": 4037,
+        "bytes_lf": 4037,
         "eol": "lf",
         "change": "added"
       },
@@ -569,10 +569,10 @@
       },
       {
         "path": "CHANGELOG.md",
-        "sha256": "f0beb38cdf00278e8d3a8a295b2aed01b226983537e70420ddd4cbe0b3c344b3",
-        "sha256_lf": "f0beb38cdf00278e8d3a8a295b2aed01b226983537e70420ddd4cbe0b3c344b3",
-        "bytes": 1866,
-        "bytes_lf": 1866,
+        "sha256": "0a9ea5cb8df3a52e0b41dfc6fd9d0c5365bdcfa39b3db2bf6ec66a82211bbe1a",
+        "sha256_lf": "0a9ea5cb8df3a52e0b41dfc6fd9d0c5365bdcfa39b3db2bf6ec66a82211bbe1a",
+        "bytes": 2462,
+        "bytes_lf": 2462,
         "eol": "lf",
         "change": "added"
       },
@@ -614,10 +614,10 @@
       },
       {
         "path": "README.md",
-        "sha256": "e24322b937bed11a21c8ec8da6b7536f08ca4c9d8e014a59050a192007adf393",
-        "sha256_lf": "e24322b937bed11a21c8ec8da6b7536f08ca4c9d8e014a59050a192007adf393",
-        "bytes": 10959,
-        "bytes_lf": 10959,
+        "sha256": "33518a8b626bb2c14eb1599e741f37f2b4f99f55eae8f6c132c8c2c1ad0a83d6",
+        "sha256_lf": "33518a8b626bb2c14eb1599e741f37f2b4f99f55eae8f6c132c8c2c1ad0a83d6",
+        "bytes": 13340,
+        "bytes_lf": 13340,
         "eol": "lf",
         "change": "modified"
       },
@@ -677,10 +677,10 @@
       },
       {
         "path": "docs/getting-started.md",
-        "sha256": "4f449b63c2a2d824578665affc2b232849a6758c4f8088b7c15486b64d252912",
-        "sha256_lf": "4f449b63c2a2d824578665affc2b232849a6758c4f8088b7c15486b64d252912",
-        "bytes": 4646,
-        "bytes_lf": 4646,
+        "sha256": "24efd3ab5830019866ae1d6b5c695f67d374a4f049463774bcb84227b30fd0c9",
+        "sha256_lf": "24efd3ab5830019866ae1d6b5c695f67d374a4f049463774bcb84227b30fd0c9",
+        "bytes": 4792,
+        "bytes_lf": 4792,
         "eol": "lf",
         "change": "added"
       },
@@ -690,6 +690,15 @@
         "sha256_lf": "a86a25e783a9f60115e5f0284d6932e597d75bceea4127fe5aa7f312d795b33d",
         "bytes": 4533,
         "bytes_lf": 4533,
+        "eol": "lf",
+        "change": "added"
+      },
+      {
+        "path": "docs/provenance.md",
+        "sha256": "bf9bc6eb14f30c6e9b9fa453824e94a881ed7621fc0995d07f7273220a22c147",
+        "sha256_lf": "bf9bc6eb14f30c6e9b9fa453824e94a881ed7621fc0995d07f7273220a22c147",
+        "bytes": 3453,
+        "bytes_lf": 3453,
         "eol": "lf",
         "change": "added"
       },
@@ -1258,6 +1267,11 @@
       "at": "2026-10-07T21:17:09.314Z",
       "files": 108,
       "note": "Vercel deployment fix: remove install-time prepare build and add explicit build:vercel command."
+    },
+    {
+      "at": "2026-10-07T21:42:19.781Z",
+      "files": 109,
+      "note": "Public release provenance and live deployment documentation update."
     }
   ]
 }

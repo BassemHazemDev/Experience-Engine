@@ -2,9 +2,16 @@
 
 Notable changes to the packages and the Studio. Versions follow semantic versioning; while the version is below 1.0.0, minor releases may contain breaking changes.
 
-## 0.1.0 — unreleased
+## [0.1.0] - Public Release
 
-First public version. An early research implementation: experimental, not production-tested, and likely to change.
+First public release of Experience Engine as an open-source project and published npm packages. An early research implementation: experimental, not production-tested, and subject to change.
+
+- **Canonical Repository**: [https://github.com/BassemHazemDev/Experience-Engine](https://github.com/BassemHazemDev/Experience-Engine)
+- **Live Studio Showcase**: [https://studio.bassemhazem.com](https://studio.bassemhazem.com)
+- **Published npm Packages**:
+  - [`@experience-engine/core@0.1.0`](https://www.npmjs.com/package/@experience-engine/core)
+  - [`@experience-engine/react@0.1.0`](https://www.npmjs.com/package/@experience-engine/react)
+- **Provenance Record**: [`docs/provenance.md`](./docs/provenance.md)
 
 ### `@experience-engine/core`
 

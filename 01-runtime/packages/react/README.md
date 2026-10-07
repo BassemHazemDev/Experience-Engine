@@ -1,14 +1,30 @@
 # @experience-engine/react
 
+[![npm version](https://img.shields.io/npm/v/@experience-engine/react.svg)](https://www.npmjs.com/package/@experience-engine/react)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/BassemHazemDev/Experience-Engine/blob/main/LICENSE)
+
 React bindings for [Experience Engine](https://github.com/BassemHazemDev/Experience-Engine): a provider and hooks built on `useSyncExternalStore`.
 
-**Experimental.** Version 0.1.0 is an early research implementation; the API may change.
+This is the published npm package for the React adapter of Experience Engine.
+
+- **npm Package**: [https://www.npmjs.com/package/@experience-engine/react](https://www.npmjs.com/package/@experience-engine/react)
+- **Current Version**: `0.1.0`
+- **Canonical Repository**: [https://github.com/BassemHazemDev/Experience-Engine](https://github.com/BassemHazemDev/Experience-Engine)
+- **Live Studio Showcase**: [https://studio.bassemhazem.com](https://studio.bassemhazem.com)
+
+**Status: Experimental (0.1.0).** An early research implementation; the API may change.
+
+## Installation
+
+Install from the npm registry:
 
 ```bash
 npm install @experience-engine/core @experience-engine/react
 ```
 
-Requires React 18 or newer.
+Requires React 18 or newer (`react >= 18` peer dependency).
+
+## Quick Example
 
 ```tsx
 import { ExperienceEngine } from "@experience-engine/core";
@@ -34,6 +50,8 @@ root.render(
 );
 ```
 
+## Exports
+
 | Export | Returns |
 |---|---|
 | `ExperienceProvider` | Makes an engine available to the hooks |
@@ -46,6 +64,12 @@ Components re-render when the engine commits an experience, and not for stale or
 
 For server rendering with Next.js, use the core in Server Components and this package on the client. See the SSR guide in the repository.
 
+## Links & Documentation
+
+- **Documentation & Examples**: [https://github.com/BassemHazemDev/Experience-Engine](https://github.com/BassemHazemDev/Experience-Engine)
+- **Interactive Showcase**: [https://studio.bassemhazem.com](https://studio.bassemhazem.com)
+- **Core Runtime**: [https://www.npmjs.com/package/@experience-engine/core](https://www.npmjs.com/package/@experience-engine/core)
+
 ## License
 
-MIT
+MIT © 2026 Bassem Hazem
