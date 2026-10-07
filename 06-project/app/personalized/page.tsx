@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import { EngineBoundary } from "@/components/engine-boundary";
 import { SiteHeader } from "@/components/shell/site-header";
+import { SiteFooter } from "@/components/shell/site-footer";
 import { ExperienceTriplet } from "@/components/ui/primitives";
 import { createEngine } from "@/engine/create-engine";
 import type { StudioRequest } from "@/engine/definitions";
@@ -130,6 +131,7 @@ export default async function PersonalizedPage() {
           Validated in a local Next.js production server (PASS_WITH_SCOPE). This does not establish behaviour for every CDN, cache or deployment topology.
         </p>
       </main>
+      <SiteFooter />
     </EngineBoundary>
   );
 }

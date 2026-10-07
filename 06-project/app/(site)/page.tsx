@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { HeroDemo } from "@/features/landing/hero-demo";
 
@@ -33,6 +34,15 @@ export default function Home() {
     <main className="landing">
       <section className="hero">
         <div className="hero-copy">
+          <div className="hero-author-badge">
+            <Image src="/author-logo.png" alt="" width={16} height={16} className="hero-author-logo" aria-hidden="true" />
+            <span>
+              Built &amp; maintained by{" "}
+              <a href="https://github.com/BassemHazemDev" target="_blank" rel="noopener noreferrer">
+                Bassem Hazem
+              </a>
+            </span>
+          </div>
           <h1>Design the experience. Let the engine handle the transition.</h1>
           <p className="lede">
             Experience Engine is a framework-agnostic runtime for multi-dimensional UI experience transitions. Culture, theme and motion are chosen
@@ -123,12 +133,38 @@ export default function Home() {
         </ul>
       </section>
 
-      <footer className="site-footer">
-        <p>
-          Experience Engine Studio is a research demonstration. Nova Commerce is fictional and its figures are demo data. Research claims are narrower than
-          this page’s headline; see <Link href="/evidence">Evidence</Link> for the boundary.
-        </p>
-      </footer>
+      <section className="band author-band" aria-labelledby="author-title">
+        <div className="author-card">
+          <Image
+            src="/author-logo.png"
+            alt="Bassem Hazem logo"
+            width={52}
+            height={52}
+            className="author-card-logo"
+          />
+          <div className="author-card-body">
+            <h2 id="author-title" className="author-card-title">Created by Bassem Hazem</h2>
+            <p className="author-card-bio">
+              Software engineer and independent researcher working across full-stack architecture, product engineering, and UI runtime systems.
+              Experience Engine was developed to formalize and evaluate the Experience Transition Protocol (ETP).
+            </p>
+            <div className="author-card-links">
+              <a href="https://github.com/BassemHazemDev" target="_blank" rel="noopener noreferrer" className="btn btn-small">
+                GitHub @BassemHazemDev
+              </a>
+              <a href="https://www.linkedin.com/in/bassem-hazem-7902b32a2/" target="_blank" rel="noopener noreferrer" className="btn btn-small">
+                LinkedIn Profile
+              </a>
+              <a href="https://github.com/BassemHazemDev/Experience-Engine" target="_blank" rel="noopener noreferrer" className="btn btn-small">
+                Canonical Repository
+              </a>
+              <a href="https://www.npmjs.com/package/@experience-engine/core" target="_blank" rel="noopener noreferrer" className="btn btn-small">
+                npm Packages
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }

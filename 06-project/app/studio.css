@@ -1,15 +1,14 @@
 /* Studio workbench: controls · preview · inspector */
 
 .studio-page {
-  block-size: calc(100dvh - var(--header-h));
-  min-block-size: 560px;
+  min-block-size: calc(100dvh - var(--header-h));
 }
 
 .workbench {
   display: grid;
   grid-template-columns: 288px minmax(0, 1fr);
-  grid-template-rows: minmax(0, 1fr) auto;
-  block-size: 100%;
+  grid-template-rows: minmax(360px, 1fr);
+  min-block-size: calc(100dvh - var(--header-h));
 }
 
 .workbench[data-research="true"] {
@@ -17,18 +16,29 @@
 }
 
 .workbench-controls {
-  grid-row: 1 / span 2;
+  grid-row: 1;
   overflow-y: auto;
   border-inline-end: 1px solid var(--studio-border);
   background: var(--studio-surface);
+  padding-block-end: 40px;
+  position: sticky;
+  inset-block-start: var(--header-h);
+  max-block-size: calc(100dvh - var(--header-h));
+  align-self: start;
 }
 
 .workbench-stage {
+  grid-column: 2;
+  grid-row: 1;
   display: flex;
   flex-direction: column;
   min-block-size: 0;
-  padding: 16px 20px 20px;
+  padding: 16px 20px 52px;
   gap: 10px;
+}
+
+.workbench[data-inspector="true"] .workbench-stage {
+  padding-block-end: 80px;
 }
 
 .stage-bar {
@@ -78,8 +88,14 @@
 
 .workbench-inspector {
   grid-column: 2 / -1;
+  grid-row: 1;
+  align-self: end;
+  position: sticky;
+  inset-block-end: 0;
+  z-index: 20;
   border-block-start: 1px solid var(--studio-border);
   background: var(--studio-surface);
+  box-shadow: 0 -4px 16px color-mix(in srgb, var(--studio-bg) 80%, transparent);
 }
 
 .inspector-toggle {
@@ -182,9 +198,9 @@
 
 .preset {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
   padding: 8px 10px;
   border: 1px solid var(--studio-border);
   border-radius: var(--studio-radius);
@@ -305,7 +321,7 @@
 .inspector {
   display: flex;
   flex-direction: column;
-  max-block-size: min(46dvh, 460px);
+  max-block-size: min(55dvh, 520px);
 }
 
 .sheet .inspector {
@@ -471,7 +487,7 @@
   flex: 1;
   min-block-size: 0;
   overflow: auto;
-  padding: 16px 20px 20px;
+  padding: 14px 20px 28px;
 }
 
 /* Delta */
@@ -869,11 +885,17 @@
 /* Research panel */
 
 .research {
+  grid-column: 3;
+  grid-row: 1;
   overflow-y: auto;
   padding: 16px;
   border-inline-start: 1px solid var(--studio-border);
   background: var(--studio-surface);
   font-size: 13px;
+  position: sticky;
+  inset-block-start: var(--header-h);
+  max-block-size: calc(100dvh - var(--header-h));
+  align-self: start;
 }
 
 .research-head {
@@ -944,16 +966,11 @@
 
 /* Layout guards */
 
-.studio-page {
-  min-block-size: 780px;
-}
-
 .workbench-controls {
   overflow-x: hidden;
 }
 
 .preset {
-  flex-wrap: wrap;
   min-inline-size: 0;
 }
 
@@ -963,11 +980,11 @@
 
 .inspector > .inspector-panel {
   flex: 1 1 auto;
-  min-block-size: 140px;
+  min-block-size: 180px;
 }
 
 .workbench-stage {
-  min-block-size: 320px;
+  min-block-size: 360px;
 }
 
 /* ── Pass 2: inspector clarity ──────────────────────────── */
@@ -1172,7 +1189,7 @@
 
 /* Give the live preview the larger share of a laptop-height window. */
 .inspector {
-  max-block-size: min(40dvh, 420px);
+  max-block-size: min(55dvh, 520px);
 }
 
 .sheet .inspector {

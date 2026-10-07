@@ -114,3 +114,12 @@ tests/  scripts/
 - The Smooth motion uses the View Transitions API and falls back to an immediate update where it is unavailable.
 - Amounts are shown in the culture's currency without conversion.
 - SSR personalization was checked against a local production server only.
+
+## Author & Provenance
+
+Experience Engine Studio is developed and maintained by **Bassem Hazem**.
+
+- **Author**: Bassem Hazem ([GitHub @BassemHazemDev](https://github.com/BassemHazemDev) · [LinkedIn](https://www.linkedin.com/in/bassem-hazem-7902b32a2/))
+- **Live Showcase**: [https://studio.bassemhazem.com](https://studio.bassemhazem.com)
+- **Canonical Repository**: [https://github.com/BassemHazemDev/Experience-Engine](https://github.com/BassemHazemDev/Experience-Engine)
+- **Provenance Documentation**: [`../docs/provenance.md`](../docs/provenance.md)
